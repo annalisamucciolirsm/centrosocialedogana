@@ -1,8 +1,74 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-</head>
-<body>
+const eventi = [
 
-</body>
-</html>
+{
+data:"18 SET",
+titolo:"Il Metodo Feldenkrais®",
+categoria:"Serata esperienziale",
+slug:"metodo-feldenkrais"
+},
+
+{
+data:"10–23 OTT",
+titolo:'Sono "Solo" 50 Anni',
+categoria:"Mostra",
+slug:"solo-50-anni"
+},
+
+{
+data:"15 OTT",
+titolo:"Comunicazione Empatica Nonviolenta",
+categoria:"Corso",
+slug:"cnv"
+},
+
+{
+data:"16 OTT",
+titolo:"L'Io e le sue Maschere",
+categoria:"Conferenza",
+slug:"maschere"
+},
+
+{
+data:"11 NOV",
+titolo:"Luci e Ombre Colorate",
+categoria:"Laboratorio bambini",
+slug:"luci-ombre"
+}
+
+];
+
+const lista=document.querySelector("#eventi");
+
+lista.innerHTML=eventi.map(evento=>`
+
+<article class="evento">
+
+<div class="evento-data">
+
+${evento.data}
+
+</div>
+
+<div class="evento-contenuto">
+
+<h2>
+
+<a href="evento.html?slug=${evento.slug}">
+
+${evento.titolo}
+
+</a>
+
+</h2>
+
+<p>
+
+${evento.categoria}
+
+</p>
+
+</div>
+
+</article>
+
+`).join("");

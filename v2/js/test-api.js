@@ -57,11 +57,14 @@ async function testAPI(){
 
         const luoghi = await getLuoghi();
 
+console.log(
+    "LUOGHI:",
+    luoghi
+);
 
-        console.log(
-            "LUOGHI:",
-            luoghi
-        );
+console.log(
+    "✓ SISTEMA DATI OPERATIVO"
+);
 
 
 

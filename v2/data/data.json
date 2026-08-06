@@ -1,7 +1,97 @@
-{
-  "config": {},
-  "eventi": [],
-  "contenuti": [],
-  "persone": [],
-  "luoghi": []
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+<meta charset="UTF-8">
+<title>Export JSON</title>
+</head>
+
+<body>
+
+<h1>Export dati</h1>
+
+<pre id="output">
+Generazione...
+</pre>
+
+
+<script>
+
+const API =
+"https://script.google.com/macros/s/AKfycbzDklNlH4AGyuMfjUg7CfrwsfS7qMNj19S7MWaYcdPmSye4BOjmWdRf0BT9eUt6VflU-A/exec";
+
+
+async function get(sheet){
+
+    const response =
+        await fetch(
+            `${API}?sheet=${sheet}`
+        );
+
+    return await response.json();
+
 }
+
+
+
+async function exportData(){
+
+
+    const database = {
+
+
+        config:
+            await get("Config"),
+
+
+        eventi:
+            await get("Eventi"),
+
+
+        contenuti:
+            await get("Contenuti"),
+
+
+        persone:
+            await get("Persone"),
+
+
+        luoghi:
+            await get("Luoghi")
+
+
+    };
+
+
+
+    const json =
+        JSON.stringify(
+            database,
+            null,
+            2
+        );
+
+
+
+    document
+        .getElementById("output")
+        .textContent = json;
+
+
+
+    console.log(json);
+
+
+}
+
+
+
+exportData();
+
+
+</script>
+
+
+</body>
+
+</html>

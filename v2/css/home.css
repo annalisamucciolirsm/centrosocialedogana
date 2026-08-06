@@ -1,6 +1,6 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Home
+   Homepage Design v5
    ========================================================== */
 
 
@@ -21,21 +21,25 @@
 
     text-align:center;
 
+    padding:80px 0;
+
 }
 
 
 
 .hero-subtitle{
 
-    margin:0;
+    margin-bottom:35px;
 
-    font-size:.78rem;
+    font-size:11px;
 
-    letter-spacing:.25em;
+    letter-spacing:3px;
 
     text-transform:uppercase;
 
     color:var(--muted);
+
+    font-weight:600;
 
 }
 
@@ -43,11 +47,17 @@
 
 .hero h1{
 
-    margin:22px 0 36px;
+    font-family:Georgia,serif;
 
-    font-size:5rem;
+    font-weight:400;
 
-    line-height:.95;
+    font-size:72px;
+
+    line-height:1.08;
+
+    letter-spacing:-1px;
+
+    color:var(--title);
 
 }
 
@@ -57,15 +67,17 @@
 
     max-width:620px;
 
-    margin:0 auto;
+    margin:40px auto 0;
 
-    color:#555;
-
-    font-size:1.35rem;
+    font-size:21px;
 
     line-height:1.7;
 
+    color:var(--muted);
+
 }
+
+
 
 
 
@@ -82,9 +94,9 @@
 
     flex-wrap:wrap;
 
-    gap:28px;
+    gap:35px;
 
-    margin-top:90px;
+    margin-top:80px;
 
 }
 
@@ -92,13 +104,13 @@
 
 .hero-nav a{
 
+    position:relative;
+
     color:var(--title);
 
-    font-size:.95rem;
+    font-size:15px;
 
-    letter-spacing:.04em;
-
-    position:relative;
+    letter-spacing:.05em;
 
 }
 
@@ -112,7 +124,7 @@
 
     left:0;
 
-    bottom:-6px;
+    bottom:-8px;
 
     width:0;
 
@@ -120,7 +132,7 @@
 
     background:var(--title);
 
-    transition:.25s ease;
+    transition:.3s ease;
 
 }
 
@@ -134,17 +146,61 @@
 
 
 
+
+
+
 /* ==========================================================
-   PROGRAMMAZIONE HOME
+   SEZIONI EDITORIALI
    ========================================================== */
 
 
 .editorial{
 
-    padding-top:70px;
+    padding-top:120px;
 
 }
 
+
+
+.editorial h2{
+
+    margin-bottom:50px;
+
+}
+
+
+
+
+
+section h2{
+
+    max-width:700px;
+
+}
+
+
+
+
+
+section p{
+
+    max-width:650px;
+
+    font-size:18px;
+
+    color:#555;
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   EVENTI HOMEPAGE
+   ========================================================== */
 
 
 .editorial-list{
@@ -161,9 +217,9 @@
 
     grid-template-columns:120px 1fr;
 
-    column-gap:42px;
+    gap:45px;
 
-    padding:34px 0;
+    padding:38px 0;
 
     border-top:1px solid var(--border);
 
@@ -183,7 +239,7 @@
 
 .evento:hover{
 
-    padding-left:12px;
+    transform:translateX(8px);
 
 }
 
@@ -191,17 +247,15 @@
 
 .evento-data{
 
-    font-size:.75rem;
+    padding-top:8px;
 
-    letter-spacing:.22em;
+    font-size:12px;
 
-    text-transform:uppercase;
-
-    font-weight:600;
+    letter-spacing:3px;
 
     color:var(--muted);
 
-    padding-top:8px;
+    font-weight:600;
 
 }
 
@@ -211,21 +265,9 @@
 
     margin:0;
 
-    font-size:2.15rem;
+    font-size:36px;
 
-    font-family:Georgia,serif;
-
-    font-weight:400;
-
-    line-height:1.1;
-
-}
-
-
-
-.evento-contenuto h2 a{
-
-    color:inherit;
+    line-height:1.15;
 
 }
 
@@ -235,11 +277,15 @@
 
     margin-top:12px;
 
+    font-size:15px;
+
     color:var(--muted);
 
-    font-size:1rem;
-
 }
+
+
+
+
 
 
 
@@ -250,7 +296,7 @@
 
 .archive-link{
 
-    margin-top:42px;
+    margin-top:45px;
 
 }
 
@@ -262,7 +308,30 @@
 
     font-weight:600;
 
+    letter-spacing:.04em;
+
 }
+
+
+
+
+
+
+
+/* ==========================================================
+   BOTTONI SEZIONI
+   ========================================================== */
+
+
+.button{
+
+    margin-top:25px;
+
+}
+
+
+
+
 
 
 
@@ -276,7 +345,7 @@
 
     .hero{
 
-        min-height:85vh;
+        min-height:90vh;
 
     }
 
@@ -284,7 +353,7 @@
 
     .hero h1{
 
-        font-size:3rem;
+        font-size:44px;
 
     }
 
@@ -292,7 +361,7 @@
 
     .hero-text{
 
-        font-size:1.1rem;
+        font-size:18px;
 
     }
 
@@ -300,9 +369,9 @@
 
     .hero-nav{
 
-        gap:18px;
+        margin-top:50px;
 
-        margin-top:45px;
+        gap:22px;
 
     }
 
@@ -312,7 +381,7 @@
 
         grid-template-columns:1fr;
 
-        row-gap:12px;
+        gap:15px;
 
     }
 
@@ -320,9 +389,10 @@
 
     .evento-contenuto h2{
 
-        font-size:1.6rem;
+        font-size:27px;
 
     }
+
 
 
 }

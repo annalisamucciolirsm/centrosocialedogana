@@ -1,1 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Centro Sociale di Dogana</title>
+
+<meta
+name="description"
+content="Centro Sociale di Dogana">
+
+<meta
+name="theme-color"
+content="#FBF8F1">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="css/style.css">
+
+<link rel="stylesheet"
+href="css/evento.css">
+
+</head>
+
+<body>
+
+<header class="hero hero-evento">
+
+<div class="container narrow">
+
+<p
+id="page-category"
+class="eyebrow">
+
+Pagina
+
+</p>
+
+<h1 id="page-title">
+
+Caricamento...
+
+</h1>
+
+<p
+id="page-subtitle"
+class="intro">
+
+</p>
+
+<nav class="hero-nav">
+
+<a href="index.html">
+
+Home
+
+</a>
+
+<a href="eventi.html">
+
+Programmazione
+
+</a>
+
+<a href="newsletter.html">
+
+Newsletter
+
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="section">
+
+<div class="container narrow">
+
+<img
+
+id="page-cover"
+
+class="evento-cover"
+
+src=""
+
+alt=""
+
+hidden>
+
+<div
+
+id="page-content"
+
+class="evento-body">
+
+<p>
+
+Caricamento della pagina...
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+<section class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Approfondimenti
+
+</p>
+
+<h2>
+
+Continua l'esplorazione
+
+</h2>
+
+</div>
+
+<div class="links">
+
+<a href="pagina.html?slug=biblioteca">
+
+Biblioteca →
+
+</a>
+
+<a href="pagina.html?slug=bibliobaita">
+
+BiblioBaita →
+
+</a>
+
+<a href="eventi.html">
+
+Programmazione →
+
+</a>
+
+<a href="newsletter.html">
+
+Newsletter →
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Contatti
+
+</p>
+
+<h2>
+
+Hai bisogno di informazioni?
+
+</h2>
+
+</div>
+
+<p>
+
+Per informazioni sulle attività,
+sulle iscrizioni e sui servizi del
+Centro Sociale di Dogana puoi
+contattarci oppure iscriverti
+alla newsletter.
+
+</p>
+
+<p class="newsletter-button">
+
+<a
+href="newsletter.html"
+class="button">
+
+Iscriviti alla newsletter
+
+</a>
+
+</p>
+
+</div>
+
+</section>
+</main>
+
+<footer>
+
+<div class="container">
+
+<div class="footer-top">
+
+<p>
+
+Centro Sociale di Dogana
+
+</p>
+
+<p>
+
+Istituti Culturali
+della Repubblica di San Marino
+
+</p>
+
+</div>
+
+<div class="divider"></div>
+
+<nav class="footer-nav">
+
+<a href="pagina.html?slug=privacy">
+
+Privacy
+
+</a>
+
+<a href="pagina.html?slug=cookie">
+
+Cookie
+
+</a>
+
+<a href="pagina.html?slug=accessibilita">
+
+Accessibilità
+
+</a>
+
+<a href="pagina.html?slug=note-legali">
+
+Note legali
+
+</a>
+
+</nav>
+
+</div>
+
+</footer>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/data.js"></script>
+
+<script>
+
+(async function () {
+
+    try {
+
+        const slug = new URLSearchParams(window.location.search).get("slug");
+
+        if (!slug) {
+
+            document.getElementById("page-title").textContent = "Pagina non trovata";
+            return;
+
+        }
+
+        await loadGoogleCharts();
+
+        const query = new google.visualization.Query(
+            `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=Contenuti`
+        );
+
+        query.send(function (response) {
+
+            if (response.isError()) {
+
+                console.error(response.getMessage());
+                return;
+
+            }
+
+            const table = response.getDataTable();
+
+            for (let r = 0; r < table.getNumberOfRows(); r++) {
+
+                if (table.getValue(r,1) !== slug)
+                    continue;
+
+                const titolo = table.getValue(r,3);
+                const sottotitolo = table.getValue(r,4);
+                const testo = table.getValue(r,6);
+                const copertina = table.getValue(r,7);
+                const seoTitle = table.getValue(r,15);
+                const seoDescription = table.getValue(r,16);
+
+                document.title = seoTitle || titolo;
+
+                if (seoDescription) {
+
+                    document
+                        .querySelector('meta[name="description"]')
+                        .setAttribute("content", seoDescription);
+
+                }
+
+                document.getElementById("page-title").textContent = titolo;
+                document.getElementById("page-subtitle").textContent = sottotitolo;
+                document.getElementById("page-content").innerHTML = testo;
+
+                if (copertina) {
+
+                    const img = document.getElementById("page-cover");
+
+                    img.hidden = false;
+                    img.src = copertina;
+                    img.alt = titolo;
+
+                }
+
+                return;
+
+            }
+
+            document.getElementById("page-title").textContent =
+                "Pagina non trovata";
+
+            document.getElementById("page-content").innerHTML =
+                "<p>Il contenuto richiesto non è disponibile.</p>";
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+})();
+
+</script>
+
+</body>
+
+</html>

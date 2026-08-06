@@ -1,242 +1,211 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Data Layer v2
+   Data Layer v3
+   JSON API
    ========================================================== */
 
 "use strict";
 
-/* ==========================================================
-   Configurazione
-   ========================================================== */
 
-const SHEET_ID = "15oL19MUdtAUfe9TupmaeG_aYKLcdo8n6u2QVy5k3WR8";
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzDklNlH4AGyuMfjUg7CfrwsfS7qMNj19S7MWaYcdPmSye4BOjmWdRf0BT9eUt6VflU-A/exec";
 
-const SHEETS = {
 
-    config: "Config",
-    eventi: "Eventi",
-    contenuti: "Contenuti",
-    persone: "Persone",
-    luoghi: "Luoghi"
+const CACHE = {};
 
-};
-
-let chartsReady = false;
 
 /* ==========================================================
-   Google Charts
+   Fetch generico
    ========================================================== */
 
-async function loadGoogleCharts(){
 
-    if(chartsReady)
-        return;
+async function getSheet(sheet){
 
-    await new Promise(resolve=>{
+    if(CACHE[sheet]){
 
-        google.charts.load("current");
+        return CACHE[sheet];
 
-        google.charts.setOnLoadCallback(resolve);
+    }
 
-    });
 
-    chartsReady=true;
+    const response = await fetch(
+        `${API_URL}?sheet=${sheet}`
+    );
 
-}
 
-/* ==========================================================
-   Query
-   ========================================================== */
+    if(!response.ok){
 
-async function querySheet(sheet){
-
-    await loadGoogleCharts();
-
-    return new Promise((resolve,reject)=>{
-
-        const query = new google.visualization.Query(
-
-            `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(sheet)}`
-
+        throw new Error(
+            "Errore caricamento dati: " + sheet
         );
 
-        query.send(response=>{
+    }
 
-            if(response.isError()){
 
-                reject(response.getMessage());
+    const data = await response.json();
 
-                return;
 
-            }
+    CACHE[sheet] = data;
 
-            resolve(response.getDataTable());
 
-        });
-
-    });
+    return data;
 
 }
 
-/* ==========================================================
-   Helpers
-   ========================================================== */
 
-function tableToObjects(table){
-
-    const headers=[];
-
-    for(let c=0;c<table.getNumberOfColumns();c++){
-
-        headers.push(table.getColumnLabel(c));
-
-    }
-
-    const rows=[];
-
-    for(let r=0;r<table.getNumberOfRows();r++){
-
-        const obj={};
-
-        headers.forEach((key,index)=>{
-
-            obj[key]=table.getValue(r,index);
-
-        });
-
-        rows.push(obj);
-
-    }
-
-    return rows;
-
-}
 
 /* ==========================================================
    Config
    ========================================================== */
 
+
 async function getConfig(){
 
-    const table = await querySheet(SHEETS.config);
+    const rows = await getSheet("Config");
 
-    const rows = tableToObjects(table);
 
-    const config={};
+    const config = {};
 
-    rows.forEach(r=>{
 
-        config[r.Chiave]=r.Valore;
+    rows.forEach(item=>{
+
+        config[item.chiave] = item.valore;
 
     });
+
 
     return config;
 
 }
 
+
+
 /* ==========================================================
    Eventi
    ========================================================== */
 
+
 async function getEventi(){
 
-    const table = await querySheet(SHEETS.eventi);
+    const eventi = await getSheet("Eventi");
 
-    let eventi = tableToObjects(table);
 
-    eventi = eventi.filter(e=>e["Visibilità"]==="Pubblico");
+    return eventi
 
-    eventi.sort((a,b)=>
+        .filter(evento =>
 
-        new Date(a["Data inizio"])-
+            evento.visibilita === "Pubblico"
 
-        new Date(b["Data inizio"])
+        )
 
-    );
+        .sort((a,b)=>{
 
-    return eventi;
+            return new Date(a.dataInizio)
+            -
+            new Date(b.dataInizio);
+
+        });
 
 }
+
+
 
 async function getEvento(slug){
 
     const eventi = await getEventi();
 
+
     return eventi.find(
 
-        e=>e.Slug===slug
+        evento =>
+        evento.slug === slug
 
     );
 
 }
+
+
 
 /* ==========================================================
    Contenuti
    ========================================================== */
 
+
 async function getContenuti(){
 
-    const table = await querySheet(SHEETS.contenuti);
-
-    return tableToObjects(table);
+    return await getSheet("Contenuti");
 
 }
+
+
 
 async function getContenuto(slug){
 
     const contenuti = await getContenuti();
 
+
     return contenuti.find(
 
-        c=>c.Slug===slug
+        contenuto =>
+        contenuto.slug === slug
 
     );
 
 }
+
+
 
 /* ==========================================================
    Persone
    ========================================================== */
 
+
 async function getPersone(){
 
-    const table = await querySheet(SHEETS.persone);
-
-    return tableToObjects(table);
+    return await getSheet("Persone");
 
 }
+
+
 
 async function getPersona(id){
 
     const persone = await getPersone();
 
+
     return persone.find(
 
-        p=>p.ID===id
+        persona =>
+        persona.id === id
 
     );
 
 }
 
+
+
 /* ==========================================================
    Luoghi
    ========================================================== */
 
+
 async function getLuoghi(){
 
-    const table = await querySheet(SHEETS.luoghi);
-
-    return tableToObjects(table);
+    return await getSheet("Luoghi");
 
 }
+
+
 
 async function getLuogo(id){
 
     const luoghi = await getLuoghi();
 
+
     return luoghi.find(
 
-        l=>l.ID===id
+        luogo =>
+        luogo.id === id
 
     );
 

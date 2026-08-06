@@ -2,49 +2,117 @@
    HOME
 ========================================================== */
 
-.hero-logo{
+header{
 
-    width:58px;
+    min-height:100vh;
 
-    height:auto;
+    display:flex;
 
-    margin:0 auto 28px;
+    align-items:center;
 
-}
+    justify-content:center;
 
-header h1{
-
-    margin:0;
+    text-align:center;
 
 }
 
 .hero-subtitle{
 
-    margin-bottom:16px;
+    margin:0;
+
+    font-size:.78rem;
+
+    letter-spacing:.25em;
+
+    text-transform:uppercase;
+
+    color:var(--muted);
+
+}
+
+h1{
+
+    margin:22px 0 30px;
 
 }
 
 .hero-text{
 
-    max-width:520px;
+    max-width:580px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    font-size:1.18rem;
 
 }
 
-main{
+.hero-nav{
 
-    padding-bottom:80px;
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:28px;
+
+    margin-top:70px;
 
 }
 
-section:first-of-type{
+.hero-nav a{
 
-    padding-top:30px;
+    color:var(--title);
+
+    text-decoration:none;
+
+    font-size:.95rem;
+
+    letter-spacing:.04em;
+
+    position:relative;
+
+}
+
+.hero-nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-6px;
+
+    width:0;
+
+    height:1px;
+
+    background:var(--title);
+
+    transition:.25s;
+
+}
+
+.hero-nav a:hover::after{
+
+    width:100%;
+
+}
+
+/* ----------------------------- */
+
+section{
+
+    padding:140px 0;
 
 }
 
 section h2{
 
-    margin-bottom:18px;
+    margin-bottom:24px;
 
 }
 
@@ -54,26 +122,26 @@ section p{
 
 }
 
-section p:last-child{
+@media(max-width:700px){
 
-    margin-bottom:0;
+header{
 
-}
-
-section a{
-
-    display:inline-block;
-
-    margin-top:10px;
-
-    color:var(--title);
-
-    font-weight:500;
+min-height:85vh;
 
 }
 
-section a:hover{
+.hero-nav{
 
-    transform:translateX(4px);
+gap:18px;
+
+margin-top:45px;
+
+}
+
+section{
+
+padding:90px 0;
+
+}
 
 }

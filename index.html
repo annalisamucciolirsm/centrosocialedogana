@@ -394,6 +394,13 @@
   </header>
 
   <div class="section-label">Prossime attivit&agrave;</div>
+ <div class="section-label">
+    Prossime attività
+</div>
+
+<ul class="links" id="eventi">
+
+</ul>
   <ul class="links">
     <li><a href="#">
       <span class="link-title">Il Metodo Feldenkrais&reg;</span>
@@ -503,5 +510,71 @@
   </footer>
 
 </main>
+ <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+
+google.charts.load('current');
+
+google.charts.setOnLoadCallback(caricaEventi);
+
+function caricaEventi(){
+
+    const query = new google.visualization.Query(
+        'https://docs.google.com/spreadsheets/d/15oL19MUdtAUfe9TupmaeG_aYKLcdo8n6u2QVy5k3WR8/gviz/tq?sheet=Eventi'
+    );
+
+    query.send(mostraEventi);
+
+}
+
+function mostraEventi(response){
+
+    if(response.isError()){
+
+        console.error(response.getMessage());
+
+        return;
+
+    }
+
+    const data = response.getDataTable();
+
+    const lista = document.getElementById("eventi");
+
+    lista.innerHTML="";
+
+    for(let i=0;i<data.getNumberOfRows();i++){
+
+        const dataEvento = data.getValue(i,0);
+        const titolo = data.getValue(i,1);
+        const categoria = data.getValue(i,2);
+        const link = data.getValue(i,3);
+
+        lista.innerHTML += `
+            <li>
+                <a href="${link}" target="_blank">
+
+                    <span class="event-date">
+                        ${dataEvento}
+                    </span>
+
+                    <span class="link-title">
+                        ${titolo}
+                    </span>
+
+                    <span class="link-meta">
+                        ${categoria}
+                    </span>
+
+                </a>
+            </li>
+        `;
+
+    }
+
+}
+
+</script>
 </body>
 </html>

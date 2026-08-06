@@ -1,7 +1,7 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Data Layer v3
-   JSON API
+   Data Layer v4
+   JSON API + Session Cache
    ========================================================== */
 
 "use strict";
@@ -11,32 +11,59 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbzDklNlH4AGyuMfjUg7CfrwsfS7qMNj19S7MWaYcdPmSye4BOjmWdRf0BT9eUt6VflU-A/exec";
 
 
-/* ==========================================================
-   Cache
-   ========================================================== */
-
 const CACHE = {};
 
 
 
 /* ==========================================================
-   Caricamento fogli JSON
+   Caricamento dati
    ========================================================== */
 
 
 async function getSheet(sheet){
 
 
-    if(CACHE[sheet]){
+    const memoryCache =
+        CACHE[sheet];
 
-        return CACHE[sheet];
+
+    if(memoryCache){
+
+        return memoryCache;
+
+    }
+
+
+
+    const storageKey =
+        "csd_" + sheet;
+
+
+
+    const saved =
+        sessionStorage.getItem(
+            storageKey
+        );
+
+
+
+    if(saved){
+
+        const data =
+            JSON.parse(saved);
+
+
+        CACHE[sheet] = data;
+
+
+        return data;
 
     }
 
 
 
     const url =
-        `${API_URL}?sheet=${encodeURIComponent(sheet)}&t=${Date.now()}`;
+        `${API_URL}?sheet=${encodeURIComponent(sheet)}`;
 
 
 
@@ -69,10 +96,18 @@ async function getSheet(sheet){
 
 
 
+    sessionStorage.setItem(
+        storageKey,
+        JSON.stringify(data)
+    );
+
+
+
     return data;
 
 
 }
+
 
 
 
@@ -101,13 +136,11 @@ async function getConfig(){
             item.valore;
 
 
-
     });
 
 
 
     return config;
-
 
 }
 
@@ -147,9 +180,7 @@ async function getEventi(){
             new Date(b.dataInizio);
 
 
-
         });
-
 
 
 }
@@ -171,12 +202,11 @@ async function getEvento(slug){
         return evento.slug === slug;
 
 
-
     });
 
 
-
 }
+
 
 
 
@@ -198,7 +228,6 @@ async function getContenuti(){
 
 
 
-
 async function getContenuto(slug){
 
 
@@ -213,9 +242,7 @@ async function getContenuto(slug){
         return contenuto.slug === slug;
 
 
-
     });
-
 
 
 }
@@ -255,9 +282,7 @@ async function getPersona(id){
         return persona.id === id;
 
 
-
     });
-
 
 
 }
@@ -297,9 +322,7 @@ async function getLuogo(id){
         return luogo.id === id;
 
 
-
     });
-
 
 
 }

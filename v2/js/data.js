@@ -11,15 +11,21 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbzDklNlH4AGyuMfjUg7CfrwsfS7qMNj19S7MWaYcdPmSye4BOjmWdRf0BT9eUt6VflU-A/exec";
 
 
+/* ==========================================================
+   Cache
+   ========================================================== */
+
 const CACHE = {};
 
 
+
 /* ==========================================================
-   Fetch generico
+   Caricamento fogli JSON
    ========================================================== */
 
 
 async function getSheet(sheet){
+
 
     if(CACHE[sheet]){
 
@@ -28,9 +34,20 @@ async function getSheet(sheet){
     }
 
 
-    const response = await fetch(
-        `${API_URL}?sheet=${sheet}`
-    );
+
+    const url =
+        `${API_URL}?sheet=${encodeURIComponent(sheet)}&t=${Date.now()}`;
+
+
+
+    const response =
+        await fetch(
+            url,
+            {
+                cache:"no-store"
+            }
+        );
+
 
 
     if(!response.ok){
@@ -42,15 +59,21 @@ async function getSheet(sheet){
     }
 
 
-    const data = await response.json();
+
+    const data =
+        await response.json();
+
 
 
     CACHE[sheet] = data;
 
 
+
     return data;
 
+
 }
+
 
 
 
@@ -61,22 +84,34 @@ async function getSheet(sheet){
 
 async function getConfig(){
 
-    const rows = await getSheet("Config");
+
+    const rows =
+        await getSheet("Config");
+
 
 
     const config = {};
 
 
+
     rows.forEach(item=>{
 
-        config[item.chiave] = item.valore;
+
+        config[item.chiave] =
+            item.valore;
+
+
 
     });
 
 
+
     return config;
 
+
 }
+
+
 
 
 
@@ -87,42 +122,64 @@ async function getConfig(){
 
 async function getEventi(){
 
-    const eventi = await getSheet("Eventi");
+
+    const eventi =
+        await getSheet("Eventi");
+
 
 
     return eventi
 
-        .filter(evento =>
+        .filter(evento=>{
 
-            evento.visibilita === "Pubblico"
 
-        )
+            return evento.visibilita === "Pubblico";
+
+
+        })
+
 
         .sort((a,b)=>{
+
 
             return new Date(a.dataInizio)
             -
             new Date(b.dataInizio);
 
+
+
         });
 
+
+
 }
+
 
 
 
 async function getEvento(slug){
 
-    const eventi = await getEventi();
+
+    const eventi =
+        await getEventi();
 
 
-    return eventi.find(
 
-        evento =>
-        evento.slug === slug
+    return eventi.find(evento=>{
 
-    );
+
+        return evento.slug === slug;
+
+
+
+    });
+
+
 
 }
+
+
+
 
 
 
@@ -133,25 +190,38 @@ async function getEvento(slug){
 
 async function getContenuti(){
 
+
     return await getSheet("Contenuti");
 
+
 }
+
 
 
 
 async function getContenuto(slug){
 
-    const contenuti = await getContenuti();
+
+    const contenuti =
+        await getContenuti();
 
 
-    return contenuti.find(
 
-        contenuto =>
-        contenuto.slug === slug
+    return contenuti.find(contenuto=>{
 
-    );
+
+        return contenuto.slug === slug;
+
+
+
+    });
+
+
 
 }
+
+
+
 
 
 
@@ -162,25 +232,38 @@ async function getContenuto(slug){
 
 async function getPersone(){
 
+
     return await getSheet("Persone");
 
+
 }
+
 
 
 
 async function getPersona(id){
 
-    const persone = await getPersone();
+
+    const persone =
+        await getPersone();
 
 
-    return persone.find(
 
-        persona =>
-        persona.id === id
+    return persone.find(persona=>{
 
-    );
+
+        return persona.id === id;
+
+
+
+    });
+
+
 
 }
+
+
+
 
 
 
@@ -191,22 +274,32 @@ async function getPersona(id){
 
 async function getLuoghi(){
 
+
     return await getSheet("Luoghi");
+
 
 }
 
 
 
+
 async function getLuogo(id){
 
-    const luoghi = await getLuoghi();
+
+    const luoghi =
+        await getLuoghi();
 
 
-    return luoghi.find(
 
-        luogo =>
-        luogo.id === id
+    return luoghi.find(luogo=>{
 
-    );
+
+        return luogo.id === id;
+
+
+
+    });
+
+
 
 }

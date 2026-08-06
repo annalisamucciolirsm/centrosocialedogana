@@ -1,10 +1,13 @@
 /* ==========================================================
-HOME
-========================================================== */
+   CENTRO SOCIALE DI DOGANA
+   Home
+   ========================================================== */
+
 
 /* ==========================================================
-HERO
-========================================================== */
+   HERO
+   ========================================================== */
+
 
 .hero{
 
@@ -20,25 +23,27 @@ HERO
 
 }
 
-.eyebrow{
+
+
+.hero-subtitle{
 
     margin:0;
 
-    color:var(--muted);
-
     font-size:.78rem;
-
-    font-weight:600;
 
     letter-spacing:.25em;
 
     text-transform:uppercase;
 
+    color:var(--muted);
+
 }
+
+
 
 .hero h1{
 
-    margin:22px 0 34px;
+    margin:22px 0 36px;
 
     font-size:5rem;
 
@@ -46,19 +51,28 @@ HERO
 
 }
 
-.intro{
+
+
+.hero-text{
 
     max-width:620px;
 
     margin:0 auto;
 
-    color:var(--muted);
+    color:#555;
 
-    font-size:1.3rem;
+    font-size:1.35rem;
 
-    line-height:1.75;
+    line-height:1.7;
 
 }
+
+
+
+/* ==========================================================
+   NAVIGAZIONE HERO
+   ========================================================== */
+
 
 .hero-nav{
 
@@ -70,23 +84,25 @@ HERO
 
     gap:28px;
 
-    margin-top:80px;
+    margin-top:90px;
 
 }
 
-.hero-nav a{
 
-    position:relative;
+
+.hero-nav a{
 
     color:var(--title);
 
     font-size:.95rem;
 
-    font-weight:500;
+    letter-spacing:.04em;
 
-    letter-spacing:.03em;
+    position:relative;
 
 }
+
+
 
 .hero-nav a::after{
 
@@ -104,9 +120,11 @@ HERO
 
     background:var(--title);
 
-    transition:var(--transition);
+    transition:.25s ease;
 
 }
+
+
 
 .hero-nav a:hover::after{
 
@@ -114,15 +132,20 @@ HERO
 
 }
 
+
+
 /* ==========================================================
-EDITORIAL
-========================================================== */
+   PROGRAMMAZIONE HOME
+   ========================================================== */
+
 
 .editorial{
 
-    padding-top:80px;
+    padding-top:70px;
 
 }
+
+
 
 .editorial-list{
 
@@ -130,25 +153,25 @@ EDITORIAL
 
 }
 
-/* ==========================================================
-EVENTI
-========================================================== */
+
 
 .evento{
 
     display:grid;
 
-    grid-template-columns:130px 1fr;
+    grid-template-columns:120px 1fr;
 
-    column-gap:40px;
+    column-gap:42px;
 
     padding:34px 0;
 
     border-top:1px solid var(--border);
 
-    transition:padding .25s ease;
+    transition:.25s ease;
 
 }
+
+
 
 .evento:last-child{
 
@@ -156,37 +179,49 @@ EVENTI
 
 }
 
+
+
 .evento:hover{
 
     padding-left:12px;
 
 }
 
+
+
 .evento-data{
 
-    padding-top:6px;
-
-    color:var(--muted);
-
-    font-size:.74rem;
-
-    font-weight:600;
+    font-size:.75rem;
 
     letter-spacing:.22em;
 
     text-transform:uppercase;
 
+    font-weight:600;
+
+    color:var(--muted);
+
+    padding-top:8px;
+
 }
+
+
 
 .evento-contenuto h2{
 
     margin:0;
 
-    font-size:2.05rem;
+    font-size:2.15rem;
+
+    font-family:Georgia,serif;
+
+    font-weight:400;
 
     line-height:1.1;
 
 }
+
+
 
 .evento-contenuto h2 a{
 
@@ -194,23 +229,32 @@ EVENTI
 
 }
 
+
+
 .evento-contenuto p{
 
-    margin-top:14px;
+    margin-top:12px;
 
     color:var(--muted);
 
+    font-size:1rem;
+
 }
 
+
+
 /* ==========================================================
-LINK
-========================================================== */
+   LINK ARCHIVIO
+   ========================================================== */
+
 
 .archive-link{
 
-    margin-top:44px;
+    margin-top:42px;
 
 }
+
+
 
 .archive-link a{
 
@@ -220,65 +264,15 @@ LINK
 
 }
 
-/* ==========================================================
-BIBLIOTECA
-========================================================== */
 
-.links{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:26px;
-
-    margin-top:36px;
-
-}
-
-.links a{
-
-    color:var(--title);
-
-    font-weight:500;
-
-}
 
 /* ==========================================================
-CONTATTI
-========================================================== */
+   RESPONSIVE
+   ========================================================== */
 
-.contact-grid{
 
-    display:grid;
+@media(max-width:760px){
 
-    grid-template-columns:repeat(3,1fr);
-
-    gap:40px;
-
-    margin-top:44px;
-
-}
-
-.contact-grid h3{
-
-    margin-bottom:14px;
-
-    font-size:1.2rem;
-
-}
-
-.contact-grid p{
-
-    margin:0;
-
-}
-
-/* ==========================================================
-RESPONSIVE
-========================================================== */
-
-@media (max-width:760px){
 
     .hero{
 
@@ -286,39 +280,43 @@ RESPONSIVE
 
     }
 
+
+
     .hero h1{
 
-        font-size:3.5rem;
+        font-size:3rem;
 
     }
 
-    .intro{
+
+
+    .hero-text{
 
         font-size:1.1rem;
 
     }
 
+
+
     .hero-nav{
 
         gap:18px;
 
-        margin-top:48px;
+        margin-top:45px;
 
     }
 
-    .editorial{
 
-        padding-top:70px;
-
-    }
 
     .evento{
 
         grid-template-columns:1fr;
 
-        row-gap:10px;
+        row-gap:12px;
 
     }
+
+
 
     .evento-contenuto h2{
 
@@ -326,12 +324,5 @@ RESPONSIVE
 
     }
 
-    .contact-grid{
-
-        grid-template-columns:1fr;
-
-        gap:28px;
-
-    }
 
 }

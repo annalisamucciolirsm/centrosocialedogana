@@ -6,54 +6,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Programmazione • Centro Sociale di Dogana</title>
+<title>Programmazione | Centro Sociale di Dogana</title>
 
-<meta
+<meta 
 name="description"
-content="Tutte le attività, gli incontri, i laboratori, le mostre e gli appuntamenti del Centro Sociale di Dogana.">
+content="Tutte le attività, gli incontri e gli eventi del Centro Sociale di Dogana.">
 
-<meta name="theme-color" content="#FBF8F1">
+
+<meta 
+name="theme-color"
+content="#FBF8F1">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
+
+<link 
 href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
 rel="stylesheet">
 
+
 <link rel="stylesheet" href="css/style.css">
+
 <link rel="stylesheet" href="css/home.css">
+
 
 </head>
 
+
 <body>
+
 
 <header class="hero">
 
-<div class="container">
 
-<p class="eyebrow">
+<div class="container narrow">
 
-Repubblica di San Marino
 
-</p>
-
-<h1>
+<p class="hero-subtitle">
 
 Programmazione
 
+</p>
+
+
+<h1>
+
+Attività e incontri
+
 </h1>
 
-<p class="intro">
 
-Attività culturali, incontri,
-laboratori, presentazioni,
-mostre, conferenze e iniziative
+<p class="hero-text">
+
+Scopri tutti gli appuntamenti,
+i corsi, le mostre e le iniziative
 del Centro Sociale di Dogana.
 
 </p>
 
+
+
 <nav class="hero-nav">
+
 
 <a href="index.html">
 
@@ -61,223 +78,146 @@ Home
 
 </a>
 
-<a href="#eventi">
 
-Eventi
+<a href="pagina.html?slug=biblioteca">
 
-</a>
-
-<a href="newsletter.html">
-
-Newsletter
+Biblioteca
 
 </a>
 
-<a href="index.html#contatti">
 
-Contatti
+<a href="pagina.html?slug=bibliobaita">
+
+BiblioBaita
 
 </a>
+
 
 </nav>
 
+
+
 </div>
+
 
 </header>
 
+
+
+
 <main>
+
 
 <section class="editorial">
 
+
 <div class="container">
 
-<div class="section-header">
 
 <p class="section-label">
 
-Programmazione
+Calendario
 
 </p>
 
-<h2>
 
-Tutti gli appuntamenti
 
-</h2>
+<div id="eventi" class="editorial-list">
 
 </div>
 
-<p>
 
-Il calendario viene aggiornato
-automaticamente dal Centro Sociale
-di Dogana.
-
-Le attività possono subire variazioni:
-ti consigliamo di consultare sempre
-questa pagina prima di partecipare.
-
-</p>
-
-<div
-id="eventi"
-class="editorial-list">
-
-<!-- popolato automaticamente -->
 
 </div>
 
-</div>
-
-</section>
-<section class="section">
-
-<div class="container narrow">
-
-<div class="section-header">
-
-<p class="section-label">
-
-Come partecipare
-
-</p>
-
-<h2>
-
-Informazioni utili
-
-</h2>
-
-</div>
-
-<p>
-
-Salvo diversa indicazione, le attività del Centro Sociale
-di Dogana sono aperte alla cittadinanza.
-
-Quando è richiesta la prenotazione o è previsto un numero
-massimo di partecipanti, questa informazione è riportata
-nella pagina del singolo evento.
-
-</p>
-
-<p>
-
-Per aggiornamenti dell'ultimo momento,
-spostamenti di sede o variazioni di orario,
-fa fede esclusivamente quanto pubblicato
-su questo sito.
-
-</p>
-
-</div>
 
 </section>
 
-<section class="section">
 
-<div class="container narrow">
-
-<div class="section-header">
-
-<p class="section-label">
-
-Newsletter
-
-</p>
-
-<h2>
-
-Non perdere nessun appuntamento.
-
-</h2>
-
-</div>
-
-<p>
-
-Ricevi una mail quando vengono pubblicati
-nuovi incontri, laboratori, mostre,
-presentazioni e iniziative del Centro Sociale.
-
-</p>
-
-<p class="newsletter-button">
-
-<a
-href="newsletter.html"
-class="button">
-
-Iscriviti alla newsletter
-
-</a>
-
-</p>
-
-</div>
-
-</section>
 </main>
+
+
+
 
 <footer>
 
+
 <div class="container">
+
 
 <div class="footer-top">
 
-<p>
+
+<p data-config="site_name">
 
 Centro Sociale di Dogana
 
 </p>
 
-<p>
 
-Istituti Culturali
-della Repubblica di San Marino
+<p data-config="organization">
+
+Istituti Culturali della Repubblica di San Marino
 
 </p>
 
+
 </div>
+
+
 
 <div class="divider"></div>
 
+
+
 <nav class="footer-nav">
 
-<a href="privacy.html">
+
+<a href="pagina.html?slug=privacy">
 
 Privacy
 
 </a>
 
-<a href="cookie.html">
+
+<a href="pagina.html?slug=cookie">
 
 Cookie
 
 </a>
 
-<a href="accessibilita.html">
+
+<a href="pagina.html?slug=accessibilita">
 
 Accessibilità
 
 </a>
 
-<a href="note-legali.html">
+
+<a href="pagina.html?slug=note-legali">
 
 Note legali
 
 </a>
 
+
 </nav>
+
 
 </div>
 
+
 </footer>
 
-<script src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script src="js/app.js"></script>
+
+
+<script src="js/data.js"></script>
+
+<script src="js/render.js"></script>
+
 <script src="js/eventi.js"></script>
+
 
 </body>
 

@@ -1,473 +1,665 @@
-/* ==========================================================
-   CENTRO SOCIALE DI DOGANA
-   Data Layer v6
-   Static JSON + Date Fix
-   ========================================================== */
-
-"use strict";
-
-
-const DATA_URL = "data/data.json";
-
-
-let DATABASE = null;
-
-
-
-/* ==========================================================
-   CARICAMENTO DATABASE
-   ========================================================== */
-
-
-async function loadDatabase(){
-
-
-    if(DATABASE){
-
-        return DATABASE;
-
+{
+  "config": [
+    {
+      "chiave": "site_name",
+      "valore": "Centro Sociale di Dogana",
+      "descrizione": "Nome del sito"
+    },
+    {
+      "chiave": "site_tagline",
+      "valore": "Biblioteca, attività culturali e partecipazione nella Repubblica di San Marino",
+      "descrizione": "Sottotitolo"
+    },
+    {
+      "chiave": "organization",
+      "valore": "Istituti Culturali della Repubblica di San Marino",
+      "descrizione": "Ente"
+    },
+    {
+      "chiave": "description",
+      "valore": "Il Centro Sociale di Dogana promuove cultura, lettura, formazione e partecipazione.",
+      "descrizione": "Descrizione generale"
+    },
+    {
+      "chiave": "email",
+      "valore": "info@centrosocialedogana.sm",
+      "descrizione": "Email principale"
+    },
+    {
+      "chiave": "pec",
+      "valore": "",
+      "descrizione": "PEC"
+    },
+    {
+      "chiave": "telefono",
+      "valore": "#ERROR!",
+      "descrizione": "Telefono"
+    },
+    {
+      "chiave": "whatsapp",
+      "valore": "#ERROR!",
+      "descrizione": "WhatsApp"
+    },
+    {
+      "chiave": "indirizzo",
+      "valore": "Via XXV Marzo, Dogana",
+      "descrizione": "Indirizzo"
+    },
+    {
+      "chiave": "castello",
+      "valore": "Serravalle",
+      "descrizione": "Castello"
+    },
+    {
+      "chiave": "cap",
+      "valore": 47891,
+      "descrizione": "CAP"
+    },
+    {
+      "chiave": "paese",
+      "valore": "Repubblica di San Marino",
+      "descrizione": "Paese"
+    },
+    {
+      "chiave": "maps",
+      "valore": "https://maps.google.com",
+      "descrizione": "Google Maps"
+    },
+    {
+      "chiave": "latitudine",
+      "valore": "",
+      "descrizione": "Latitudine"
+    },
+    {
+      "chiave": "longitudine",
+      "valore": "",
+      "descrizione": "Longitudine"
+    },
+    {
+      "chiave": "facebook",
+      "valore": "",
+      "descrizione": "Facebook"
+    },
+    {
+      "chiave": "instagram",
+      "valore": "",
+      "descrizione": "Instagram"
+    },
+    {
+      "chiave": "youtube",
+      "valore": "",
+      "descrizione": "YouTube"
+    },
+    {
+      "chiave": "linkedin",
+      "valore": "",
+      "descrizione": "LinkedIn"
+    },
+    {
+      "chiave": "newsletter_url",
+      "valore": "newsletter.html",
+      "descrizione": "Pagina newsletter"
+    },
+    {
+      "chiave": "privacy_url",
+      "valore": "privacy.html",
+      "descrizione": "Privacy"
+    },
+    {
+      "chiave": "cookie_url",
+      "valore": "cookie.html",
+      "descrizione": "Cookie"
+    },
+    {
+      "chiave": "accessibilita_url",
+      "valore": "accessibilita.html",
+      "descrizione": "Accessibilità"
+    },
+    {
+      "chiave": "note_legali_url",
+      "valore": "note-legali.html",
+      "descrizione": "Note legali"
+    },
+    {
+      "chiave": "logo",
+      "valore": "/logo.svg",
+      "descrizione": "Logo"
+    },
+    {
+      "chiave": "favicon",
+      "valore": "/favicon.ico",
+      "descrizione": "Favicon"
+    },
+    {
+      "chiave": "hero_image",
+      "valore": "",
+      "descrizione": "Immagine hero"
+    },
+    {
+      "chiave": "footer_text",
+      "valore": "Centro Sociale di Dogana — Istituti Culturali della Repubblica di San Marino",
+      "descrizione": "Testo footer"
+    },
+    {
+      "chiave": "copyright",
+      "valore": "© Repubblica di San Marino",
+      "descrizione": "Copyright"
+    },
+    {
+      "chiave": "theme_color",
+      "valore": "#FBF8F1",
+      "descrizione": "Colore tema"
     }
-
-
-
-    const response =
-        await fetch(
-            DATA_URL,
-            {
-                cache:"no-store"
-            }
-        );
-
-
-
-    if(!response.ok){
-
-        throw new Error(
-            "Impossibile caricare data.json"
-        );
-
+  ],
+  "eventi": [
+    {
+      "id": 1,
+      "dataInizio": "2026-09-17T22:00:00.000Z",
+      "dataFine": "",
+      "titolo": "Il Metodo Feldenkrais®",
+      "categoria": "Serata esperienziale",
+      "slug": "metodo-feldenkrais",
+      "luogoId": "centro-sociale-dogana",
+      "relatoreId": "laura-rossi",
+      "sottotitolo": "Un incontro per conoscere il metodo attraverso il movimento.",
+      "descrizioneBreve": "Serata introduttiva aperta a tutti dedicata al Metodo Feldenkrais®.",
+      "testoCompleto": "<p>Un incontro esperienziale per avvicinarsi al Metodo Feldenkrais®, un approccio che utilizza il movimento per migliorare consapevolezza, postura e benessere. L'incontro alternerà una breve introduzione teorica a esperienze pratiche guidate.</p>",
+      "copertina": "https://example.com/images/feldenkrais-cover.jpg",
+      "card": "https://example.com/images/feldenkrais-card.jpg",
+      "galleria": "",
+      "orario": "20:45",
+      "durata": "90 min",
+      "prenotazione": "Ingresso libero",
+      "linkPrenotazione": "",
+      "allegato": "",
+      "capienza": 60,
+      "etaMinima": 14,
+      "gratuito": true,
+      "visibilita": "Pubblico",
+      "posizione": "Home,In evidenza",
+      "tag": "salute,movimento,benessere",
+      "seoTitle": "Il Metodo Feldenkrais® | Centro Sociale di Dogana",
+      "seoDescription": "Serata esperienziale dedicata al Metodo Feldenkrais®.",
+      "openGraph": "https://example.com/images/feldenkrais-og.jpg",
+      "imageAlt": "Lezione del Metodo Feldenkrais",
+      "stato": "Programmato",
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "dataInizio": "2026-10-09T22:00:00.000Z",
+      "dataFine": "2026-10-22T22:00:00.000Z",
+      "titolo": "Sono \"Solo\" 50 Anni",
+      "categoria": "Mostra",
+      "slug": "solo-50-anni",
+      "luogoId": "centro-sociale-dogana",
+      "relatoreId": "fulvio-cesari",
+      "sottotitolo": "Cinquant'anni di arte e storia del Laboratorio di Pittura di Domagnano.",
+      "descrizioneBreve": "Mostra celebrativa del cinquantesimo anniversario.",
+      "testoCompleto": "<p>Una mostra che ripercorre mezzo secolo di attività del Laboratorio di Pittura di Domagnano attraverso opere, documenti e fotografie.</p>",
+      "copertina": "https://example.com/images/solo50-cover.jpg",
+      "card": "https://example.com/images/solo50-card.jpg",
+      "galleria": "",
+      "orario": "17:00",
+      "durata": "Mostra",
+      "prenotazione": "Ingresso libero",
+      "linkPrenotazione": "",
+      "allegato": "",
+      "capienza": 200,
+      "etaMinima": 0,
+      "gratuito": true,
+      "visibilita": "Pubblico",
+      "posizione": "Home,In evidenza",
+      "tag": "arte,mostra,pittura",
+      "seoTitle": "Sono \"Solo\" 50 Anni | Mostra",
+      "seoDescription": "Mostra celebrativa del Laboratorio di Pittura di Domagnano.",
+      "openGraph": "https://example.com/images/solo50-og.jpg",
+      "imageAlt": "Manifesto della mostra",
+      "stato": "Programmato",
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "dataInizio": "2026-10-14T22:00:00.000Z",
+      "dataFine": "",
+      "titolo": "Comunicazione Empatica Nonviolenta",
+      "categoria": "Corso",
+      "slug": "cnv",
+      "luogoId": "bibliobaita",
+      "relatoreId": "marco-bianchi",
+      "sottotitolo": "Un percorso dedicato all'ascolto e alla relazione.",
+      "descrizioneBreve": "Corso introduttivo alla Comunicazione Nonviolenta.",
+      "testoCompleto": "<p>Laboratorio dedicato ai principi della Comunicazione Nonviolenta elaborata da Marshall Rosenberg.</p>",
+      "copertina": "https://example.com/images/cnv-cover.jpg",
+      "card": "https://example.com/images/cnv-card.jpg",
+      "galleria": "",
+      "orario": "20:30",
+      "durata": "2 ore",
+      "prenotazione": "Prenotazione obbligatoria",
+      "linkPrenotazione": "https://example.com/prenotazioni/cnv",
+      "allegato": "",
+      "capienza": 30,
+      "etaMinima": 18,
+      "gratuito": true,
+      "visibilita": "Pubblico",
+      "posizione": "Programmazione",
+      "tag": "comunicazione,corso",
+      "seoTitle": "Corso di Comunicazione Nonviolenta",
+      "seoDescription": "Scopri i principi della Comunicazione Nonviolenta.",
+      "openGraph": "https://example.com/images/cnv-og.jpg",
+      "imageAlt": "Partecipanti al corso",
+      "stato": "Programmato",
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "dataInizio": "2026-10-15T22:00:00.000Z",
+      "dataFine": "",
+      "titolo": "L'Io e le sue Maschere",
+      "categoria": "Conferenza",
+      "slug": "maschere",
+      "luogoId": "centro-sociale-dogana",
+      "relatoreId": "paolo-verdi",
+      "sottotitolo": "Una riflessione tra psicologia, filosofia e letteratura.",
+      "descrizioneBreve": "Conferenza aperta al pubblico.",
+      "testoCompleto": "<p>Una serata dedicata al rapporto tra identità, ruoli sociali e crescita personale.</p>",
+      "copertina": "https://example.com/images/maschere-cover.jpg",
+      "card": "https://example.com/images/maschere-card.jpg",
+      "galleria": "",
+      "orario": "21:00",
+      "durata": "90 min",
+      "prenotazione": "Ingresso libero",
+      "linkPrenotazione": "",
+      "allegato": "",
+      "capienza": 100,
+      "etaMinima": 16,
+      "gratuito": true,
+      "visibilita": "Pubblico",
+      "posizione": "Programmazione",
+      "tag": "psicologia,filosofia,conferenza",
+      "seoTitle": "L'Io e le sue Maschere",
+      "seoDescription": "Conferenza dedicata al tema dell'identità personale.",
+      "openGraph": "https://example.com/images/maschere-og.jpg",
+      "imageAlt": "Relatore durante la conferenza",
+      "stato": "Programmato",
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "dataInizio": "2026-11-10T23:00:00.000Z",
+      "dataFine": "",
+      "titolo": "Luci e Ombre Colorate",
+      "categoria": "Laboratorio bambini",
+      "slug": "luci-ombre",
+      "luogoId": "bibliobaita",
+      "relatoreId": "anna-neri",
+      "sottotitolo": "Un laboratorio creativo dedicato ai bambini.",
+      "descrizioneBreve": "Esperienze artistiche con luce, carta e colori.",
+      "testoCompleto": "<p>Attraverso giochi, sagome, luci e colori i bambini sperimenteranno il rapporto tra ombra, immaginazione e creatività.</p>",
+      "copertina": "https://example.com/images/luciombre-cover.jpg",
+      "card": "https://example.com/images/luciombre-card.jpg",
+      "galleria": "",
+      "orario": "16:30",
+      "durata": "75 min",
+      "prenotazione": "Prenotazione consigliata",
+      "linkPrenotazione": "https://example.com/prenotazioni/luciombre",
+      "allegato": "",
+      "capienza": 20,
+      "etaMinima": 5,
+      "gratuito": true,
+      "visibilita": "Pubblico",
+      "posizione": "Home",
+      "tag": "bambini,laboratorio,creatività",
+      "seoTitle": "Luci e Ombre Colorate",
+      "seoDescription": "Laboratorio creativo per bambini.",
+      "openGraph": "https://example.com/images/luciombre-og.jpg",
+      "imageAlt": "Bambini durante il laboratorio",
+      "stato": "Programmato",
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
     }
-
-
-
-    DATABASE =
-        await response.json();
-
-
-
-    return DATABASE;
-
-
-}
-
-
-
-
-
-
-/* ==========================================================
-   NORMALIZZAZIONE DATE
-   ========================================================== */
-
-
-function normalizzaData(data){
-
-
-    if(!data){
-
-        return null;
-
+  ],
+  "contenuti": [
+    {
+      "id": 1,
+      "slug": "biblioteca",
+      "tipo": "Servizio",
+      "titolo": "Biblioteca",
+      "sottotitolo": "Uno spazio aperto alla lettura, allo studio e alla scoperta.",
+      "sommario": "La biblioteca del Centro Sociale di Dogana fa parte della rete bibliotecaria della Repubblica di San Marino.",
+      "testo": "<p>La Biblioteca del Centro Sociale di Dogana offre prestito librario, consultazione, emeroteca, attività di promozione della lettura e iniziative culturali rivolte a tutte le età.</p>",
+      "copertina": "",
+      "galleria": "",
+      "autore": "Centro Sociale di Dogana",
+      "dataPubblicazione": "2026-08-05T22:00:00.000Z",
+      "dataAggiornamento": "2026-08-05T22:00:00.000Z",
+      "tag": "biblioteca,lettura,cultura",
+      "visibilita": "Pubblico",
+      "posizione": "Menu",
+      "seoTitle": "Biblioteca | Centro Sociale di Dogana",
+      "seoDescription": "Scopri la Biblioteca del Centro Sociale di Dogana.",
+      "openGraph": "",
+      "imageAlt": "Biblioteca del Centro Sociale",
+      "stato": "Pubblicato"
+    },
+    {
+      "id": 2,
+      "slug": "bibliobaita",
+      "tipo": "Progetto",
+      "titolo": "BiblioBaita",
+      "sottotitolo": "La biblioteca all'aperto del Centro Sociale.",
+      "sommario": "Un progetto dedicato alla lettura all'aria aperta.",
+      "testo": "<p>BiblioBaita porta i libri fuori dalla biblioteca e crea occasioni di incontro, lettura e partecipazione nel Parco Laiala.</p>",
+      "copertina": "",
+      "galleria": "",
+      "autore": "Centro Sociale di Dogana",
+      "dataPubblicazione": "2026-08-05T22:00:00.000Z",
+      "dataAggiornamento": "2026-08-05T22:00:00.000Z",
+      "tag": "bibliobaita,lettura,bambini",
+      "visibilita": "Pubblico",
+      "posizione": "Home,Menu",
+      "seoTitle": "BiblioBaita | Centro Sociale di Dogana",
+      "seoDescription": "Il progetto BiblioBaita.",
+      "openGraph": "",
+      "imageAlt": "BiblioBaita al Parco Laiala",
+      "stato": "Pubblicato"
+    },
+    {
+      "id": 3,
+      "slug": "chi-siamo",
+      "tipo": "Pagina",
+      "titolo": "Chi siamo",
+      "sottotitolo": "Il Centro Sociale di Dogana.",
+      "sommario": "Conosci il Centro Sociale di Dogana.",
+      "testo": "<p>Il Centro Sociale di Dogana promuove cultura, partecipazione e inclusione attraverso eventi, servizi e attività rivolte alla cittadinanza.</p>",
+      "copertina": "",
+      "galleria": "",
+      "autore": "Centro Sociale di Dogana",
+      "dataPubblicazione": "2026-08-05T22:00:00.000Z",
+      "dataAggiornamento": "2026-08-05T22:00:00.000Z",
+      "tag": "centro-sociale",
+      "visibilita": "Pubblico",
+      "posizione": "Menu",
+      "seoTitle": "Chi siamo | Centro Sociale di Dogana",
+      "seoDescription": "Conosci il Centro Sociale di Dogana.",
+      "openGraph": "",
+      "imageAlt": "Centro Sociale di Dogana",
+      "stato": "Pubblicato"
+    },
+    {
+      "id": 4,
+      "slug": "privacy",
+      "tipo": "Documento",
+      "titolo": "Privacy",
+      "sottotitolo": "Informativa sul trattamento dei dati personali.",
+      "sommario": "Informativa privacy.",
+      "testo": "<p>Inserire qui il testo definitivo della privacy policy.</p>",
+      "copertina": "",
+      "galleria": "",
+      "autore": "",
+      "dataPubblicazione": "2026-08-05T22:00:00.000Z",
+      "dataAggiornamento": "2026-08-05T22:00:00.000Z",
+      "tag": "privacy",
+      "visibilita": "Pubblico",
+      "posizione": "Footer",
+      "seoTitle": "Privacy | Centro Sociale di Dogana",
+      "seoDescription": "Privacy policy.",
+      "openGraph": "",
+      "imageAlt": "Privacy",
+      "stato": "Pubblicato"
+    },
+    {
+      "id": 5,
+      "slug": "cookie",
+      "tipo": "Documento",
+      "titolo": "Cookie",
+      "sottotitolo": "Informativa sui cookie.",
+      "sommario": "Informativa cookie.",
+      "testo": "<p>Inserire qui la cookie policy definitiva.</p>",
+      "copertina": "",
+      "galleria": "",
+      "autore": "",
+      "dataPubblicazione": "2026-08-05T22:00:00.000Z",
+      "dataAggiornamento": "2026-08-05T22:00:00.000Z",
+      "tag": "cookie",
+      "visibilita": "Pubblico",
+      "posizione": "Footer",
+      "seoTitle": "Cookie | Centro Sociale di Dogana",
+      "seoDescription": "Cookie policy.",
+      "openGraph": "",
+      "imageAlt": "Cookie",
+      "stato": "Pubblicato"
+    },
+    {
+      "id": 6,
+      "slug": "accessibilita",
+      "tipo": "Documento",
+      "titolo": "Accessibilità",
+      "sottotitolo": "Dichiarazione di accessibilità.",
+      "sommario": "Dichiarazione di accessibilità.",
+      "testo": "<p>Inserire qui la dichiarazione di accessibilità.</p>",
+      "copertina": "",
+      "galleria": "",
+      "autore": "",
+      "dataPubblicazione": "2026-08-05T22:00:00.000Z",
+      "dataAggiornamento": "2026-08-05T22:00:00.000Z",
+      "tag": "accessibilità",
+      "visibilita": "Pubblico",
+      "posizione": "Footer",
+      "seoTitle": "Accessibilità | Centro Sociale di Dogana",
+      "seoDescription": "Dichiarazione di accessibilità.",
+      "openGraph": "",
+      "imageAlt": "Accessibilità",
+      "stato": "Pubblicato"
+    },
+    {
+      "id": 7,
+      "slug": "note-legali",
+      "tipo": "Documento",
+      "titolo": "Note legali",
+      "sottotitolo": "Informazioni legali.",
+      "sommario": "Informazioni legali.",
+      "testo": "<p>Inserire qui le note legali del sito.</p>",
+      "copertina": "",
+      "galleria": "",
+      "autore": "",
+      "dataPubblicazione": "2026-08-05T22:00:00.000Z",
+      "dataAggiornamento": "2026-08-05T22:00:00.000Z",
+      "tag": "note-legali",
+      "visibilita": "Pubblico",
+      "posizione": "Footer",
+      "seoTitle": "Note legali | Centro Sociale di Dogana",
+      "seoDescription": "Note legali.",
+      "openGraph": "",
+      "imageAlt": "Note legali",
+      "stato": "Pubblicato"
     }
-
-
-
-    const d =
-        new Date(data);
-
-
-
-    return new Date(
-        d.getTime()
-        +
-        d.getTimezoneOffset()*60000
-    );
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-   CONFIG
-   ========================================================== */
-
-
-async function getConfig(){
-
-
-    const db =
-        await loadDatabase();
-
-
-    return db.config;
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-   EVENTI
-   ========================================================== */
-
-
-async function getEventi(){
-
-
-    const db =
-        await loadDatabase();
-
-
-
-    return db.eventi
-
-
-        .filter(evento=>{
-
-
-            return evento.visibilita
-            ===
-            "Pubblico";
-
-
-        })
-
-
-        .sort((a,b)=>{
-
-
-            return (
-
-                normalizzaData(
-                    a.dataInizio
-                )
-                -
-                normalizzaData(
-                    b.dataInizio
-                )
-
-            );
-
-
-        });
-
-
-}
-
-
-
-
-
-async function getEvento(slug){
-
-
-    const eventi =
-        await getEventi();
-
-
-
-    return eventi.find(evento=>{
-
-
-        return evento.slug
-        ===
-        slug;
-
-
-    });
-
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-   CONTENUTI
-   ========================================================== */
-
-
-async function getContenuti(){
-
-
-    const db =
-        await loadDatabase();
-
-
-    return db.contenuti;
-
-
-}
-
-
-
-
-
-async function getContenuto(slug){
-
-
-    const contenuti =
-        await getContenuti();
-
-
-
-    return contenuti.find(contenuto=>{
-
-
-        return contenuto.slug
-        ===
-        slug;
-
-
-    });
-
-
-}
-
-
-
-
-
-
-/* ==========================================================
-   PERSONE
-   ========================================================== */
-
-
-async function getPersone(){
-
-
-    const db =
-        await loadDatabase();
-
-
-    return db.persone;
-
-
-}
-
-
-
-
-async function getPersona(id){
-
-
-    const persone =
-        await getPersone();
-
-
-
-    return persone.find(persona=>{
-
-
-        return persona.id
-        ===
-        id;
-
-
-    });
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-   LUOGHI
-   ========================================================== */
-
-
-async function getLuoghi(){
-
-
-    const db =
-        await loadDatabase();
-
-
-    return db.luoghi;
-
-
-}
-
-
-
-
-
-async function getLuogo(id){
-
-
-    const luoghi =
-        await getLuoghi();
-
-
-
-    return luoghi.find(luogo=>{
-
-
-        return luogo.id
-        ===
-        id;
-
-
-    });
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-   FORMATTAZIONE DATE PUBBLICHE
-   ========================================================== */
-
-
-function formattaData(inizio,fine){
-
-
-    const mesi=[
-
-        "GEN",
-        "FEB",
-        "MAR",
-        "APR",
-        "MAG",
-        "GIU",
-        "LUG",
-        "AGO",
-        "SET",
-        "OTT",
-        "NOV",
-        "DIC"
-
-    ];
-
-
-
-    if(!inizio){
-
-        return "";
-
+  ],
+  "persone": [
+    {
+      "id": "laura-rossi",
+      "nome": "Laura",
+      "cognome": "Rossi",
+      "nomeCompleto": "Laura Rossi",
+      "ruolo": "Relatrice",
+      "qualifica": "Insegnante certificata Metodo Feldenkrais®",
+      "biografiaBreve": "Insegnante certificata del Metodo Feldenkrais®.",
+      "biografiaCompleta": "Formatrice certificata del Metodo Feldenkrais®, conduce percorsi individuali e di gruppo dedicati al movimento consapevole e al benessere psicofisico.",
+      "foto": "https://example.com/persone/laura-rossi.jpg",
+      "email": "",
+      "telefono": "",
+      "sitoWeb": "",
+      "facebook": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": "metodo-feldenkrais,movimento",
+      "tag": 10,
+      "ordine": "Pubblico",
+      "visibilita": "Laura Rossi | Centro Sociale di Dogana",
+      "seoTitle": "Biografia di Laura Rossi.",
+      "seoDescription": "Attivo",
+      "stato": ""
+    },
+    {
+      "id": "fulvio-cesari",
+      "nome": "Fulvio",
+      "cognome": "Cesari",
+      "nomeCompleto": "Fulvio Cesari",
+      "ruolo": "Artista",
+      "qualifica": "Curatore",
+      "biografiaBreve": "Artista sammarinese.",
+      "biografiaCompleta": "Artista e curatore impegnato nella valorizzazione del Laboratorio di Pittura di Domagnano.",
+      "foto": "https://example.com/persone/fulvio-cesari.jpg",
+      "email": "",
+      "telefono": "",
+      "sitoWeb": "",
+      "facebook": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": "arte,pittura",
+      "tag": 20,
+      "ordine": "Pubblico",
+      "visibilita": "Fulvio Cesari",
+      "seoTitle": "Biografia di Fulvio Cesari.",
+      "seoDescription": "Attivo",
+      "stato": ""
+    },
+    {
+      "id": "marco-bianchi",
+      "nome": "Marco",
+      "cognome": "Bianchi",
+      "nomeCompleto": "Marco Bianchi",
+      "ruolo": "Formatore",
+      "qualifica": "Comunicazione Nonviolenta",
+      "biografiaBreve": "Formatore CNV.",
+      "biografiaCompleta": "Si occupa di percorsi dedicati alla Comunicazione Nonviolenta, ai conflitti e alla relazione.",
+      "foto": "https://example.com/persone/marco-bianchi.jpg",
+      "email": "",
+      "telefono": "",
+      "sitoWeb": "",
+      "facebook": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": "comunicazione,cnv",
+      "tag": 30,
+      "ordine": "Pubblico",
+      "visibilita": "Marco Bianchi",
+      "seoTitle": "Biografia di Marco Bianchi.",
+      "seoDescription": "Attivo",
+      "stato": ""
+    },
+    {
+      "id": "paolo-verdi",
+      "nome": "Paolo",
+      "cognome": "Verdi",
+      "nomeCompleto": "Dott. Paolo Verdi",
+      "ruolo": "Psicologo",
+      "qualifica": "Divulgatore",
+      "biografiaBreve": "Psicologo e divulgatore.",
+      "biografiaCompleta": "Psicologo, relatore e autore di conferenze dedicate all'identità personale.",
+      "foto": "https://example.com/persone/paolo-verdi.jpg",
+      "email": "",
+      "telefono": "",
+      "sitoWeb": "",
+      "facebook": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": "psicologia",
+      "tag": 40,
+      "ordine": "Pubblico",
+      "visibilita": "Paolo Verdi",
+      "seoTitle": "Biografia del Dott. Paolo Verdi.",
+      "seoDescription": "Attivo",
+      "stato": ""
+    },
+    {
+      "id": "anna-neri",
+      "nome": "Anna",
+      "cognome": "Neri",
+      "nomeCompleto": "Anna Neri",
+      "ruolo": "Educatrice",
+      "qualifica": "Illustratrice",
+      "biografiaBreve": "Educatrice e illustratrice.",
+      "biografiaCompleta": "Educatrice specializzata in laboratori creativi per bambini e lettura ad alta voce.",
+      "foto": "https://example.com/persone/anna-neri.jpg",
+      "email": "",
+      "telefono": "",
+      "sitoWeb": "",
+      "facebook": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": "bambini,laboratori",
+      "tag": 50,
+      "ordine": "Pubblico",
+      "visibilita": "Anna Neri",
+      "seoTitle": "Biografia di Anna Neri.",
+      "seoDescription": "Attivo",
+      "stato": ""
     }
-
-
-
-    const d1 =
-        normalizzaData(inizio);
-
-
-
-    if(!d1){
-
-        return "";
-
+  ],
+  "luoghi": [
+    {
+      "id": "centro-sociale-dogana",
+      "nome": "Centro Sociale di Dogana",
+      "tipo": "Centro culturale",
+      "descrizione": "Sede principale delle attività culturali del Centro Sociale di Dogana.",
+      "indirizzo": "Via XXV Marzo, Dogana",
+      "castello": "Serravalle",
+      "googleMaps": "https://maps.google.com/?q=Centro+Sociale+Dogana",
+      "latitudine": "",
+      "longitudine": "",
+      "capienza": "",
+      "accessibile": "",
+      "foto": true,
+      "note": "https://example.com/centro-sociale.jpg",
+      "": "Sala polivalente, biblioteca e spazi per laboratori."
+    },
+    {
+      "id": "bibliobaita",
+      "nome": "BiblioBaita",
+      "tipo": "Biblioteca all'aperto",
+      "descrizione": "Spazio estivo dedicato alla lettura e alle attività culturali nel Parco Laiala.",
+      "indirizzo": "Parco Laiala, Serravalle",
+      "castello": "Serravalle",
+      "googleMaps": "https://maps.google.com/?q=Parco+Laiala",
+      "latitudine": "",
+      "longitudine": "",
+      "capienza": "",
+      "accessibile": "",
+      "foto": true,
+      "note": "https://example.com/bibliobaita.jpg",
+      "": "Aperta durante la stagione estiva."
+    },
+    {
+      "id": "parco-laiala",
+      "nome": "Parco Laiala",
+      "tipo": "Parco",
+      "descrizione": "Parco pubblico utilizzato per attività all'aperto.",
+      "indirizzo": "Parco Laiala, Serravalle",
+      "castello": "Serravalle",
+      "googleMaps": "https://maps.google.com/?q=Parco+Laiala",
+      "latitudine": "",
+      "longitudine": "",
+      "capienza": "",
+      "accessibile": "",
+      "foto": true,
+      "note": "https://example.com/parco.jpg",
+      "": "Area verde."
+    },
+    {
+      "id": "biblioteca",
+      "nome": "Biblioteca del Centro Sociale",
+      "tipo": "Biblioteca",
+      "descrizione": "Biblioteca aderente alla rete bibliotecaria della Repubblica di San Marino.",
+      "indirizzo": "Centro Sociale di Dogana, Via XXV Marzo",
+      "castello": "Serravalle",
+      "googleMaps": "https://maps.google.com/?q=Biblioteca+Dogana",
+      "latitudine": "",
+      "longitudine": "",
+      "capienza": "",
+      "accessibile": "",
+      "foto": true,
+      "note": "https://example.com/biblioteca.jpg",
+      "": "Prestito, consultazione ed emeroteca."
     }
-
-
-
-    if(fine){
-
-
-        const d2 =
-            normalizzaData(fine);
-
-
-
-        if(
-
-            d1.getMonth()
-            ===
-            d2.getMonth()
-
-        ){
-
-            return (
-
-                d1.getDate()
-                +
-                "–"
-                +
-                d2.getDate()
-                +
-                " "
-                +
-                mesi[
-                    d1.getMonth()
-                ]
-
-            );
-
-        }
-
-
-
-        return (
-
-            d1.getDate()
-            +
-            " "
-            +
-            mesi[
-                d1.getMonth()
-            ]
-            +
-            " – "
-            +
-            d2.getDate()
-            +
-            " "
-            +
-            mesi[
-                d2.getMonth()
-            ]
-
-        );
-
-
-    }
-
-
-
-    return (
-
-        d1.getDate()
-        +
-        " "
-        +
-        mesi[
-            d1.getMonth()
-        ]
-
-    );
-
-
+  ]
 }

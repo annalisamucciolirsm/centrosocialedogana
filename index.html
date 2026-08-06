@@ -381,6 +381,75 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition:none !important; }
   }
+ /* ===== PROGRAMMA EVENTI ===== */
+
+#eventi{
+
+    margin-top:10px;
+
+}
+
+.evento{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:inherit;
+
+    padding:26px 0;
+
+    border-bottom:1px solid #D8D2C8;
+
+    transition:.25s;
+
+}
+
+.evento:hover{
+
+    padding-left:10px;
+
+}
+
+.evento-data{
+
+    font-family:Verdana,Arial,sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#8F8B85;
+
+    margin-bottom:10px;
+
+}
+
+.evento-titolo{
+
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:26px;
+
+    color:#71583E;
+
+    line-height:1.2;
+
+    margin-bottom:6px;
+
+}
+
+.evento-categoria{
+
+    font-family:Verdana,Arial,sans-serif;
+
+    font-size:14px;
+
+    color:#8F8B85;
+
+}
 </style>
 </head>
 <body>
@@ -393,37 +462,11 @@
     <p class="motto">Da oltre quarantacinque anni, uno spazio di cultura, incontro e partecipazione aperto alla comunit&agrave;.</p>
   </header>
 
-  <div class="section-label">Prossime attivit&agrave;</div>
  <div class="section-label">
     Prossime attività
 </div>
 
-<ul class="links" id="eventi">
-
-</ul>
-  <ul class="links">
-    <li><a href="#">
-      <span class="link-title">Il Metodo Feldenkrais&reg;</span>
-      <span class="link-meta">Serata esperienziale &middot; 18 settembre</span>
-    </a></li>
-    <li><a href="#">
-      <span class="link-title">Sono &ldquo;Solo&rdquo; 50 Anni</span>
-      <span class="link-meta">Mostra &middot; 10&ndash;23 ottobre</span>
-    </a></li>
-    <li><a href="#">
-      <span class="link-title">Comunicazione Empatica Nonviolenta</span>
-      <span class="link-meta">Corso base &middot; dal 15 ottobre</span>
-    </a></li>
-    <li><a href="#">
-      <span class="link-title">L&rsquo;Io e le sue Maschere</span>
-      <span class="link-meta">Conferenza &middot; 16 ottobre</span>
-    </a></li>
-    <li><a href="#">
-      <span class="link-title">Luci e Ombre Colorate</span>
-      <span class="link-meta">Corso di disegno, 8&ndash;12 anni &middot; dall'11 novembre</span>
-    </a></li>
-  </ul>
-
+<div id="eventi"></div>
   <div class="divider">&mdash;</div>
 
   <div class="section-label">Biblioteca</div>
@@ -511,7 +554,6 @@
 
 </main>
  <script src="https://www.gstatic.com/charts/loader.js"></script>
-
 <script>
 
 google.charts.load('current');
@@ -521,10 +563,41 @@ google.charts.setOnLoadCallback(caricaEventi);
 function caricaEventi(){
 
     const query = new google.visualization.Query(
-        'https://docs.google.com/spreadsheets/d/15oL19MUdtAUfe9TupmaeG_aYKLcdo8n6u2QVy5k3WR8/gviz/tq?sheet=Eventi'
+
+'https://docs.google.com/spreadsheets/d/15oL19MUdtAUfe9TupmaeG_aYKLcdo8n6u2QVy5k3WR8/gviz/tq?sheet=Eventi'
+
     );
 
     query.send(mostraEventi);
+
+}
+
+function formattaData(inizio,fine){
+
+    const mesi=[
+        "GEN","FEB","MAR","APR","MAG","GIU",
+        "LUG","AGO","SET","OTT","NOV","DIC"
+    ];
+
+    if(!inizio) return "";
+
+    const d1=new Date(inizio);
+
+    if(!fine){
+
+        return d1.getDate()+" "+mesi[d1.getMonth()];
+
+    }
+
+    const d2=new Date(fine);
+
+    if(d1.getMonth()==d2.getMonth()){
+
+        return d1.getDate()+"–"+d2.getDate()+" "+mesi[d1.getMonth()];
+
+    }
+
+    return d1.getDate()+" "+mesi[d1.getMonth()]+" – "+d2.getDate()+" "+mesi[d2.getMonth()];
 
 }
 
@@ -538,38 +611,53 @@ function mostraEventi(response){
 
     }
 
-    const data = response.getDataTable();
+    const table=response.getDataTable();
 
-    const lista = document.getElementById("eventi");
+    const contenitore=document.getElementById("eventi");
 
-    lista.innerHTML="";
+    contenitore.innerHTML="";
 
-    for(let i=0;i<data.getNumberOfRows();i++){
+    for(let r=0;r<table.getNumberOfRows();r++){
 
-        const dataEvento = data.getValue(i,0);
-        const titolo = data.getValue(i,1);
-        const categoria = data.getValue(i,2);
-        const link = data.getValue(i,3);
+        const inizio=table.getValue(r,0);
 
-        lista.innerHTML += `
-            <li>
-                <a href="${link}" target="_blank">
+        const fine=table.getValue(r,1);
 
-                    <span class="event-date">
-                        ${dataEvento}
-                    </span>
+        const titolo=table.getValue(r,2);
 
-                    <span class="link-title">
-                        ${titolo}
-                    </span>
+        const categoria=table.getValue(r,3);
 
-                    <span class="link-meta">
-                        ${categoria}
-                    </span>
+        const link=table.getValue(r,4);
 
-                </a>
-            </li>
-        `;
+        const attivo=table.getValue(r,6);
+
+        if(attivo!==true) continue;
+
+        contenitore.innerHTML+=`
+
+<a class="evento" href="${link}" target="_blank">
+
+<div class="evento-data">
+
+${formattaData(inizio,fine)}
+
+</div>
+
+<div class="evento-titolo">
+
+${titolo}
+
+</div>
+
+<div class="evento-categoria">
+
+${categoria}
+
+</div>
+
+</a>
+
+`;
 
     }
 

@@ -1,114 +1,154 @@
-google.charts.load('current');
+/* ==========================================================
+   CENTRO SOCIALE DI DOGANA
+   Eventi v2
+   ========================================================== */
+
+google.charts.load("current");
 
 google.charts.setOnLoadCallback(caricaEventi);
 
-function caricaEventi(){
+/* ==========================================================
+   Configurazione
+   ========================================================== */
 
-    const query = new google.visualization.Query(
-        'https://docs.google.com/spreadsheets/d/15oL19MUdtAUfe9TupmaeG_aYKLcdo8n6u2QVy5k3WR8/gviz/tq?sheet=Eventi'
-    );
+const SHEET_URL =
+    "https://docs.google.com/spreadsheets/d/15oL19MUdtAUfe9TupmaeG_aYKLcdo8n6u2QVy5k3WR8/gviz/tq?sheet=Eventi";
+
+const MESI = [
+    "GEN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAG",
+    "GIU",
+    "LUG",
+    "AGO",
+    "SET",
+    "OTT",
+    "NOV",
+    "DIC"
+];
+
+/* ==========================================================
+   Caricamento
+   ========================================================== */
+
+function caricaEventi() {
+
+    const query = new google.visualization.Query(SHEET_URL);
 
     query.send(mostraEventi);
 
 }
 
-function formattaData(inizio,fine){
+/* ==========================================================
+   Data
+   ========================================================== */
 
-    const mesi=[
-        "GEN","FEB","MAR","APR","MAG","GIU",
-        "LUG","AGO","SET","OTT","NOV","DIC"
-    ];
+function formattaData(inizio, fine) {
 
-    if(!inizio) return "";
+    if (!inizio) return "";
 
-    const d1=new Date(inizio);
+    const d1 = new Date(inizio);
 
-    if(fine){
+    if (!fine) {
 
-        const d2=new Date(fine);
-
-        if(d1.getMonth()==d2.getMonth()){
-
-            return d1.getDate()+"–"+d2.getDate()+" "+mesi[d1.getMonth()];
-
-        }
-
-        return d1.getDate()+" "+mesi[d1.getMonth()]+" – "+d2.getDate()+" "+mesi[d2.getMonth()];
+        return `${d1.getDate()} ${MESI[d1.getMonth()]}`;
 
     }
 
-    return d1.getDate()+" "+mesi[d1.getMonth()];
+    const d2 = new Date(fine);
+
+    if (d1.getMonth() === d2.getMonth()) {
+
+        return `${d1.getDate()}–${d2.getDate()} ${MESI[d1.getMonth()]}`;
+
+    }
+
+    return `${d1.getDate()} ${MESI[d1.getMonth()]} – ${d2.getDate()} ${MESI[d2.getMonth()]}`;
 
 }
 
-function mostraEventi(response){
+/* ==========================================================
+   Rendering
+   ========================================================== */
 
-    if(response.isError()){
+function mostraEventi(response) {
 
-        console.error(response.getMessage());
+    if (response.isError()) {
+
+        console.error(
+            "Errore Google Sheets:",
+            response.getMessage()
+        );
 
         return;
 
     }
 
-    const table=response.getDataTable();
+    const table = response.getDataTable();
 
-    const contenitore=document.getElementById("eventi");
+    const contenitore = document.getElementById("eventi");
 
-    contenitore.innerHTML="";
+    if (!contenitore) return;
 
-    for(let i=0;i<table.getNumberOfRows();i++){
+    contenitore.innerHTML = "";
 
-        const attivo=table.getValue(i,12);
+    let html = "";
 
-        if(attivo!==true) continue;
+    for (let i = 0; i < table.getNumberOfRows(); i++) {
 
-        const data=table.getValue(i,0);
+        const attivo = table.getValue(i, 12);
 
-        const fine=table.getValue(i,1);
+        if (attivo !== true) continue;
 
-        const titolo=table.getValue(i,2);
+        const dataInizio = table.getValue(i, 0);
+        const dataFine = table.getValue(i, 1);
 
-        const categoria=table.getValue(i,3);
+        const titolo = table.getValue(i, 2) || "";
+        const categoria = table.getValue(i, 3) || "";
+        const slug = table.getValue(i, 4) || "";
 
-        const slug=table.getValue(i,4);
-
-        contenitore.innerHTML+=`
-
+        html += `
 <article class="evento">
 
-<div class="evento-data">
+    <div class="evento-data">
+        ${formattaData(dataInizio, dataFine)}
+    </div>
 
-${formattaData(data,fine)}
+    <div class="evento-contenuto">
 
-</div>
+        <h2>
 
-<div class="evento-contenuto">
+            <a href="evento.html?slug=${encodeURIComponent(slug)}">
 
-<h2>
+                ${titolo}
 
-<a href="evento.html?slug=${slug}">
+            </a>
 
-${titolo}
+        </h2>
 
-</a>
+        <p>${categoria}</p>
 
-</h2>
-
-<p>
-
-${categoria}
-
-</p>
-
-</div>
+    </div>
 
 </article>
-
-<hr>
-
 `;
 
     }
+
+    if (!html.trim()) {
+
+        html = `
+<p class="empty-state">
+
+Al momento non sono presenti attività in programma.
+
+</p>
+`;
+
+    }
+
+    contenitore.innerHTML = html;
 
 }

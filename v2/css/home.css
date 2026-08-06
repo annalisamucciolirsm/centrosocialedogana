@@ -32,19 +32,39 @@ header{
 
 h1{
 
-    margin:22px 0 30px;
+    margin:22px 0 36px;
+
+    font-size:5rem;
+
+    line-height:.95;
 
 }
 
 .hero-text{
 
-    max-width:580px;
+    max-width:620px;
 
-    margin:auto;
+    margin:0 auto;
+
+    color:#555;
+
+    font-size:1.35rem;
+
+    line-height:1.7;
+
+}
+
+.hero-location{
+
+    margin-top:36px;
 
     color:var(--muted);
 
-    font-size:1.18rem;
+    letter-spacing:.08em;
+
+    font-size:.82rem;
+
+    text-transform:uppercase;
 
 }
 
@@ -58,7 +78,7 @@ h1{
 
     gap:28px;
 
-    margin-top:70px;
+    margin-top:90px;
 
 }
 

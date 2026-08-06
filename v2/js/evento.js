@@ -1,15 +1,9 @@
-/* ==========================================================
-   CENTRO SOCIALE DI DOGANA
-   Evento v4
-   JSON API + Async Parallel
-   ========================================================== */
-
 "use strict";
 
 
 document.addEventListener(
-    "DOMContentLoaded",
-    initEvento
+"DOMContentLoaded",
+initEvento
 );
 
 
@@ -18,16 +12,16 @@ async function initEvento(){
 
 
     const slug =
-        new URLSearchParams(
-            window.location.search
-        )
-        .get("slug");
+    new URLSearchParams(
+        window.location.search
+    )
+    .get("slug");
 
 
 
     if(!slug){
 
-        mostraErroreEvento();
+        mostraErrore();
 
         return;
 
@@ -39,13 +33,13 @@ async function initEvento(){
 
 
         const evento =
-            await getEvento(slug);
+        await getEvento(slug);
 
 
 
         if(!evento){
 
-            mostraErroreEvento();
+            mostraErrore();
 
             return;
 
@@ -53,32 +47,36 @@ async function initEvento(){
 
 
 
-        const [
-            luogo,
-            persone
-        ] = await Promise.all([
 
-            getLuogo(evento.luogoId),
 
-            getPersone()
+        const luogo =
+        await getLuogo(
+            evento.luogoId
+        );
 
-        ]);
+
+
+        const persone =
+        await getPersone();
 
 
 
         const relatore =
-            trovaPersone(
-                evento,
-                persone
-            );
+        persone.find(
+            persona =>
+            persona.id === evento.relatoreId
+        );
 
 
 
-        renderPaginaEvento(
+
+
+        renderEvento(
             evento,
             luogo,
             relatore
         );
+
 
 
     }
@@ -88,12 +86,12 @@ async function initEvento(){
 
 
         console.error(
-            "Errore evento:",
+            "Errore caricamento evento:",
             error
         );
 
 
-        mostraErroreEvento();
+        mostraErrore();
 
 
     }
@@ -105,198 +103,112 @@ async function initEvento(){
 
 
 
-/* ==========================================================
-   Trova relatori
-   ========================================================== */
-
-
-function trovaPersone(
-    evento,
-    persone
-){
-
-
-    if(!evento.relatoreId){
-
-        return [];
-
-    }
 
 
 
-    const ids =
-        evento.relatoreId
-        .split(",");
-
-
-
-    return persone.filter(persona=>{
-
-
-        return ids.includes(
-            persona.id
-        );
-
-
-    });
-
-
-}
-
-
-
-
-
-
-
-/* ==========================================================
-   Rendering
-   ========================================================== */
-
-
-function renderPaginaEvento(
+function renderEvento(
     evento,
     luogo,
-    persone
+    relatore
 ){
 
 
-    document.title =
-        evento.seoTitle
-        ||
-        evento.titolo;
+
+document.title =
+evento.seoTitle
+||
+evento.titolo;
 
 
 
-    setText(
-        "titolo",
-        evento.titolo
-    );
-
-
-    setText(
-        "categoria",
-        evento.categoria
-    );
-
-
-    setText(
-        "meta",
-        evento.sottotitolo
-    );
-
-
-    setHTML(
-        "descrizione",
-        evento.testoCompleto
-    );
-
-
-    setText(
-        "quando",
-        formattaData(
-            evento.dataInizio,
-            evento.dataFine
-        )
-    );
-
-
-    setText(
-        "orario",
-        evento.orario || "—"
-    );
-
-
-    setText(
-        "luogo",
-        luogo
-        ?
-        luogo.nome
-        :
-        ""
-    );
-
-
-    setText(
-        "prenotazione",
-        evento.prenotazione || ""
-    );
+setText(
+"categoria",
+evento.categoria
+);
 
 
 
-    if(persone.length){
+setText(
+"titolo",
+evento.titolo
+);
 
 
-        setHTML(
-            "relatore",
-            persone.map(persona=>`
 
-<strong>
-${persona.nomeCompleto}
-</strong>
-
-<br>
-
-${persona.biografiaBreve || ""}
-
-`).join("<br><br>")
-        );
+setText(
+"sottotitolo",
+evento.sottotitolo
+);
 
 
-    }
+
+setText(
+"quando",
+formattaData(
+evento.dataInizio,
+evento.dataFine
+)
+);
+
+
+
+setText(
+"luogo",
+luogo
+?
+luogo.nome
+:
+""
+);
+
+
+
+setText(
+"orario",
+evento.orario
+||
+""
+);
+
+
+
+setText(
+"prenotazione",
+evento.prenotazione
+||
+""
+);
 
 
 
 
 
-    if(evento.copertina){
-
-
-        const img =
-            document.getElementById(
-                "copertina"
-            );
-
-
-        if(img){
-
-            img.hidden = false;
-
-            img.src =
-                evento.copertina;
-
-
-            img.alt =
-                evento.imageAlt
-                ||
-                evento.titolo;
-
-        }
-
-
-    }
+setHTML(
+"descrizione",
+evento.testoCompleto
+||
+evento.descrizioneBreve
+);
 
 
 
-    if(evento.allegato){
+if(relatore){
 
 
-        const link =
-            document.getElementById(
-                "allegato"
-            );
+setHTML(
+"relatore",
+`
 
+<h3>
+${relatore.nomeCompleto || ""}
+</h3>
 
-        if(link){
+<p>
+${relatore.biografiaBreve || ""}
+</p>
 
-            link.hidden = false;
-
-            link.href =
-                evento.allegato;
-
-        }
-
-    }
+`
+);
 
 
 }
@@ -307,51 +219,112 @@ ${persona.biografiaBreve || ""}
 
 
 
-/* ==========================================================
-   Helpers DOM
-   ========================================================== */
+if(evento.copertina){
+
+
+const img =
+document.getElementById(
+"copertina"
+);
+
+
+
+img.src =
+evento.copertina;
+
+
+
+img.alt =
+evento.imageAlt
+||
+evento.titolo;
+
+
+
+img.hidden=false;
+
+
+
+}
+
+
+
+if(evento.allegato){
+
+
+const link =
+document.getElementById(
+"allegato"
+);
+
+
+
+link.href =
+evento.allegato;
+
+
+
+link.hidden=false;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
 
 
 function setText(
-    id,
-    valore
+id,
+valore
 ){
 
 
-    const elemento =
-        document.getElementById(id);
+const elemento =
+document.getElementById(id);
 
 
 
-    if(elemento){
+if(elemento){
 
-        elemento.textContent =
-            valore || "";
+elemento.textContent =
+valore || "";
 
-    }
+}
 
 
 }
+
+
+
+
 
 
 
 function setHTML(
-    id,
-    valore
+id,
+valore
 ){
 
 
-    const elemento =
-        document.getElementById(id);
+const elemento =
+document.getElementById(id);
 
 
 
-    if(elemento){
+if(elemento){
 
-        elemento.innerHTML =
-            valore || "";
+elemento.innerHTML =
+valore || "";
 
-    }
+}
 
 
 }
@@ -362,28 +335,23 @@ function setHTML(
 
 
 
-/* ==========================================================
-   Errore
-   ========================================================== */
+function mostraErrore(){
 
 
-function mostraErroreEvento(){
+const titolo =
+document.getElementById(
+"titolo"
+);
 
 
-    setText(
-        "titolo",
-        "Evento non trovato"
-    );
 
+if(titolo){
 
-    setHTML(
-        "descrizione",
-        `
-<p>
-L'evento richiesto non è disponibile.
-</p>
-`
-    );
+titolo.textContent =
+"Evento non trovato";
+
+}
+
 
 
 }

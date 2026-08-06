@@ -1,74 +1,284 @@
-const eventi = [
+<!DOCTYPE html>
+<html lang="it">
 
-{
-data:"18 SET",
-titolo:"Il Metodo Feldenkrais®",
-categoria:"Serata esperienziale",
-slug:"metodo-feldenkrais"
-},
+<head>
 
-{
-data:"10–23 OTT",
-titolo:'Sono "Solo" 50 Anni',
-categoria:"Mostra",
-slug:"solo-50-anni"
-},
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-{
-data:"15 OTT",
-titolo:"Comunicazione Empatica Nonviolenta",
-categoria:"Corso",
-slug:"cnv"
-},
+<title>Programmazione • Centro Sociale di Dogana</title>
 
-{
-data:"16 OTT",
-titolo:"L'Io e le sue Maschere",
-categoria:"Conferenza",
-slug:"maschere"
-},
+<meta
+name="description"
+content="Tutte le attività, gli incontri, i laboratori, le mostre e gli appuntamenti del Centro Sociale di Dogana.">
 
-{
-data:"11 NOV",
-titolo:"Luci e Ombre Colorate",
-categoria:"Laboratorio bambini",
-slug:"luci-ombre"
-}
+<meta name="theme-color" content="#FBF8F1">
 
-];
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-const lista=document.querySelector("#eventi");
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+rel="stylesheet">
 
-lista.innerHTML=eventi.map(evento=>`
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
 
-<article class="evento">
+</head>
 
-<div class="evento-data">
+<body>
 
-${evento.data}
+<header class="hero">
 
-</div>
+<div class="container">
 
-<div class="evento-contenuto">
+<p class="eyebrow">
 
-<h2>
+Repubblica di San Marino
 
-<a href="evento.html?slug=${evento.slug}">
+</p>
 
-${evento.titolo}
+<h1>
+
+Programmazione
+
+</h1>
+
+<p class="intro">
+
+Attività culturali, incontri,
+laboratori, presentazioni,
+mostre, conferenze e iniziative
+del Centro Sociale di Dogana.
+
+</p>
+
+<nav class="hero-nav">
+
+<a href="index.html">
+
+Home
 
 </a>
 
+<a href="#eventi">
+
+Eventi
+
+</a>
+
+<a href="newsletter.html">
+
+Newsletter
+
+</a>
+
+<a href="index.html#contatti">
+
+Contatti
+
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="editorial">
+
+<div class="container">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Programmazione
+
+</p>
+
+<h2>
+
+Tutti gli appuntamenti
+
 </h2>
+
+</div>
 
 <p>
 
-${evento.categoria}
+Il calendario viene aggiornato
+automaticamente dal Centro Sociale
+di Dogana.
+
+Le attività possono subire variazioni:
+ti consigliamo di consultare sempre
+questa pagina prima di partecipare.
+
+</p>
+
+<div
+id="eventi"
+class="editorial-list">
+
+<!-- popolato automaticamente -->
+
+</div>
+
+</div>
+
+</section>
+<section class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Come partecipare
+
+</p>
+
+<h2>
+
+Informazioni utili
+
+</h2>
+
+</div>
+
+<p>
+
+Salvo diversa indicazione, le attività del Centro Sociale
+di Dogana sono aperte alla cittadinanza.
+
+Quando è richiesta la prenotazione o è previsto un numero
+massimo di partecipanti, questa informazione è riportata
+nella pagina del singolo evento.
+
+</p>
+
+<p>
+
+Per aggiornamenti dell'ultimo momento,
+spostamenti di sede o variazioni di orario,
+fa fede esclusivamente quanto pubblicato
+su questo sito.
 
 </p>
 
 </div>
 
-</article>
+</section>
 
-`).join("");
+<section class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Newsletter
+
+</p>
+
+<h2>
+
+Non perdere nessun appuntamento.
+
+</h2>
+
+</div>
+
+<p>
+
+Ricevi una mail quando vengono pubblicati
+nuovi incontri, laboratori, mostre,
+presentazioni e iniziative del Centro Sociale.
+
+</p>
+
+<p class="newsletter-button">
+
+<a
+href="newsletter.html"
+class="button">
+
+Iscriviti alla newsletter
+
+</a>
+
+</p>
+
+</div>
+
+</section>
+</main>
+
+<footer>
+
+<div class="container">
+
+<div class="footer-top">
+
+<p>
+
+Centro Sociale di Dogana
+
+</p>
+
+<p>
+
+Istituti Culturali
+della Repubblica di San Marino
+
+</p>
+
+</div>
+
+<div class="divider"></div>
+
+<nav class="footer-nav">
+
+<a href="privacy.html">
+
+Privacy
+
+</a>
+
+<a href="cookie.html">
+
+Cookie
+
+</a>
+
+<a href="accessibilita.html">
+
+Accessibilità
+
+</a>
+
+<a href="note-legali.html">
+
+Note legali
+
+</a>
+
+</nav>
+
+</div>
+
+</footer>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/eventi.js"></script>
+
+</body>
+
+</html>

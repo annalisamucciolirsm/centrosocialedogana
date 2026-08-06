@@ -169,3 +169,333 @@ Orario
 </div>
 
 </section>
+
+  <section class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Relatore
+
+</p>
+
+<h2>
+
+Ospiti e approfondimenti
+
+</h2>
+
+</div>
+
+<p id="relatore">
+
+Le informazioni relative al relatore
+saranno visualizzate automaticamente
+quando presenti.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Partecipazione
+
+</p>
+
+<h2>
+
+Informazioni pratiche
+
+</h2>
+
+</div>
+
+<p id="prenotazione">
+
+Le modalità di partecipazione,
+eventuali prenotazioni e indicazioni
+organizzative saranno caricate
+automaticamente.
+
+</p>
+
+<div class="links">
+
+<a
+id="allegato"
+href="#"
+hidden>
+
+Scarica materiale →
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Condividi
+
+</p>
+
+<h2>
+
+Fai conoscere questo evento
+
+</h2>
+
+</div>
+
+<p>
+
+Se l'iniziativa ti interessa,
+condividila con amici e familiari.
+
+</p>
+
+<div class="links">
+
+<a id="share-facebook" href="#">
+
+Facebook →
+
+</a>
+
+<a id="share-whatsapp" href="#">
+
+WhatsApp →
+
+</a>
+
+<a id="share-email" href="#">
+
+Email →
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Altri appuntamenti
+
+</p>
+
+<h2>
+
+Potrebbero interessarti
+
+</h2>
+
+</div>
+
+<div
+id="eventi-correlati"
+class="editorial-list">
+
+<!-- popolato automaticamente -->
+
+</div>
+
+</div>
+
+</section>
+
+<section
+id="newsletter"
+class="section">
+
+<div class="container narrow">
+
+<div class="section-header">
+
+<p class="section-label">
+
+Newsletter
+
+</p>
+
+<h2>
+
+Rimani aggiornato.
+
+</h2>
+
+</div>
+
+<p>
+
+Ricevi una mail quando vengono pubblicati
+nuovi incontri, mostre, laboratori
+e attività del Centro Sociale di Dogana.
+
+</p>
+
+<p class="newsletter-button">
+
+<a
+href="newsletter.html"
+class="button">
+
+Iscriviti
+
+</a>
+
+</p>
+
+</div>
+
+</section>
+</main>
+
+<footer>
+
+<div class="container">
+
+<div class="footer-top">
+
+<p>
+
+Centro Sociale di Dogana
+
+</p>
+
+<p>
+
+Istituti Culturali
+della Repubblica di San Marino
+
+</p>
+
+</div>
+
+<div class="divider"></div>
+
+<nav class="footer-nav">
+
+<a href="privacy.html">
+
+Privacy
+
+</a>
+
+<a href="cookie.html">
+
+Cookie
+
+</a>
+
+<a href="accessibilita.html">
+
+Accessibilità
+
+</a>
+
+<a href="note-legali.html">
+
+Note legali
+
+</a>
+
+</nav>
+
+</div>
+
+</footer>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/evento.js"></script>
+
+<script>
+
+document.addEventListener("eventoCaricato", ({ detail }) => {
+
+    document.title = `${detail.titolo} • Centro Sociale di Dogana`;
+
+    const titolo = document.getElementById("titolo");
+    const categoria = document.getElementById("categoria");
+    const meta = document.getElementById("meta");
+    const descrizione = document.getElementById("descrizione");
+
+    const luogo = document.getElementById("luogo");
+    const orario = document.getElementById("orario");
+    const quando = document.getElementById("quando");
+
+    const relatore = document.getElementById("relatore");
+    const prenotazione = document.getElementById("prenotazione");
+
+    const copertina = document.getElementById("copertina");
+    const allegato = document.getElementById("allegato");
+
+    titolo.textContent = detail.titolo || "";
+    categoria.textContent = detail.categoria || "";
+    meta.textContent = detail.dataInizio || "";
+
+    descrizione.innerHTML = detail.descrizione || "";
+
+    luogo.textContent = detail.luogo || "Da definire";
+    orario.textContent = detail.orario || "Da definire";
+    quando.textContent = detail.dataInizio || "";
+
+    relatore.textContent =
+        detail.relatore || "Informazione non disponibile.";
+
+    prenotazione.textContent =
+        detail.prenotazione || "Accesso libero.";
+
+    if (detail.immagine) {
+
+        copertina.hidden = false;
+        copertina.src = detail.immagine;
+        copertina.alt = detail.titolo;
+
+    }
+
+    if (detail.allegato) {
+
+        allegato.hidden = false;
+        allegato.href = detail.allegato;
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,30 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="it">
+
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Evento | Centro Sociale di Dogana</title>
-
-<meta 
-name="description"
-content="Dettagli evento Centro Sociale di Dogana.">
-
-<meta 
-name="theme-color"
-content="#FBF8F1">
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<link 
-href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
-rel="stylesheet">
+<title>
+Evento | Centro Sociale di Dogana
+</title>
 
 
 <link rel="stylesheet" href="css/style.css">
@@ -38,52 +27,30 @@ rel="stylesheet">
 <body>
 
 
-
-<header class="hero hero-evento">
-
-
-<div class="container narrow">
+<header class="site-header">
 
 
-<p 
-id="categoria"
-class="hero-subtitle">
-
-Evento
-
-</p>
+<div class="container">
 
 
+<a href="index.html" class="brand">
 
-<h1 id="titolo">
-
-Caricamento...
-
-</h1>
-
-
-
-<p 
-id="meta"
-class="hero-text">
-
-</p>
-
-
-<nav class="hero-nav">
-
-
-<a href="index.html">
-
-Home
+Centro Sociale di Dogana
 
 </a>
 
 
+
+<nav class="main-nav">
+
+
+<a href="index.html">
+Home
+</a>
+
+
 <a href="eventi.html">
-
 Programmazione
-
 </a>
 
 
@@ -99,28 +66,62 @@ Programmazione
 
 
 
+
 <main>
 
 
+<section class="evento-page">
 
-<section class="section">
+
+<div class="container">
 
 
-<div class="container narrow">
+
+<div class="evento-meta">
+
+
+<p id="categoria"></p>
+
+
+<p id="quando"></p>
+
+
+</div>
+
+
+
+
+
+<h1 id="titolo">
+
+</h1>
+
+
+
+
+
+<p 
+class="evento-sottotitolo"
+id="sottotitolo">
+
+</p>
+
+
+
+
 
 
 
 <img
-
 id="copertina"
-
 class="evento-cover"
-
-src=""
-
 alt=""
+hidden
+>
 
-hidden>
+
+
+
 
 
 
@@ -130,54 +131,44 @@ hidden>
 <div>
 
 
-<p class="section-label">
-
-Quando
-
-</p>
+<strong>
+Luogo
+</strong>
 
 
-<p id="quando">
-
-</p>
+<p id="luogo"></p>
 
 
 </div>
 
 
 
+
 <div>
 
 
-<p class="section-label">
-
+<strong>
 Orario
+</strong>
 
-</p>
 
-
-<p id="orario">
-
-</p>
+<p id="orario"></p>
 
 
 </div>
+
 
 
 
 <div>
 
 
-<p class="section-label">
-
-Dove
-
-</p>
+<strong>
+Prenotazione
+</strong>
 
 
-<p id="luogo">
-
-</p>
+<p id="prenotazione"></p>
 
 
 </div>
@@ -189,59 +180,47 @@ Dove
 
 
 
-<div 
+
+
+
+<article 
 id="descrizione"
-class="evento-body">
+class="evento-testo">
 
 
-<p>
-
-Caricamento contenuto...
-
-</p>
-
-
-</div>
+</article>
 
 
 
 
 
-<div class="evento-extra">
 
 
-<div id="relatore">
+<section 
+id="relatore"
+class="relatore">
 
 
-</div>
-
-
-
-<p id="prenotazione">
-
-
-</p>
+</section>
 
 
 
-<a
 
+
+
+
+<a 
 id="allegato"
+class="button"
+hidden>
 
-href=""
-
-hidden
-
-target="_blank"
-
-class="button">
 
 Scarica allegato
 
 </a>
 
 
-</div>
+
 
 
 
@@ -258,69 +237,18 @@ Scarica allegato
 
 
 
+
 <footer>
 
 
 <div class="container">
 
 
-<div class="footer-top">
+<p>
 
-
-<p data-config="site_name">
-
-Centro Sociale di Dogana
+Centro Sociale di Dogana — Istituti Culturali della Repubblica di San Marino
 
 </p>
-
-
-<p data-config="organization">
-
-Istituti Culturali della Repubblica di San Marino
-
-</p>
-
-
-</div>
-
-
-
-<div class="divider"></div>
-
-
-
-<nav class="footer-nav">
-
-
-<a href="pagina.html?slug=privacy">
-
-Privacy
-
-</a>
-
-
-<a href="pagina.html?slug=cookie">
-
-Cookie
-
-</a>
-
-
-<a href="pagina.html?slug=accessibilita">
-
-Accessibilità
-
-</a>
-
-
-<a href="pagina.html?slug=note-legali">
-
-Note legali
-
-</a>
-
-
-</nav>
 
 
 </div>
@@ -332,11 +260,14 @@ Note legali
 
 
 
-<script src="js/data.js?v=3"></script>
-<script src="js/render.js?v=3"></script>
-<script src="js/evento.js?v=3"></script>
+
+
+<script src="js/data.js"></script>
+
+<script src="js/evento.js"></script>
 
 
 </body>
+
 
 </html>

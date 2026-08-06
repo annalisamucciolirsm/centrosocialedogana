@@ -1,36 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="it">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Programmazione | Centro Sociale di Dogana</title>
-
-<meta 
-name="description"
-content="Tutte le attività, gli incontri e gli eventi del Centro Sociale di Dogana.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<meta 
-name="theme-color"
-content="#FBF8F1">
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-<link 
-href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
-rel="stylesheet">
+<title>
+Programmazione | Centro Sociale di Dogana
+</title>
 
 
 <link rel="stylesheet" href="css/style.css">
 
-<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/eventi.css">
 
 
 </head>
@@ -39,68 +25,40 @@ rel="stylesheet">
 <body>
 
 
-<header class="hero">
+
+<header class="site-header">
+
+<div class="container">
 
 
-<div class="container narrow">
+<a href="index.html" class="brand">
 
+Centro Sociale di Dogana
 
-<p class="hero-subtitle">
-
-Programmazione
-
-</p>
-
-
-<h1>
-
-Attività e incontri
-
-</h1>
-
-
-<p class="hero-text">
-
-Scopri tutti gli appuntamenti,
-i corsi, le mostre e le iniziative
-del Centro Sociale di Dogana.
-
-</p>
+</a>
 
 
 
-<nav class="hero-nav">
+<nav class="main-nav">
 
 
 <a href="index.html">
-
 Home
-
 </a>
 
 
-<a href="pagina.html?slug=biblioteca">
-
-Biblioteca
-
-</a>
-
-
-<a href="pagina.html?slug=bibliobaita">
-
-BiblioBaita
-
+<a href="eventi.html">
+Programmazione
 </a>
 
 
 </nav>
 
 
-
 </div>
 
-
 </header>
+
 
 
 
@@ -108,24 +66,49 @@ BiblioBaita
 <main>
 
 
-<section class="editorial">
+<section class="page-header">
 
 
 <div class="container">
 
 
 <p class="section-label">
-
-Calendario
-
+Programmazione
 </p>
 
 
+<h1>
+Eventi e attività
+</h1>
 
-<div id="eventi" class="editorial-list">
+
+<p>
+Incontri, laboratori, corsi e iniziative culturali
+del Centro Sociale di Dogana.
+</p>
+
 
 </div>
 
+
+</section>
+
+
+
+
+
+
+<section>
+
+
+<div class="container">
+
+
+<div 
+id="lista-eventi"
+class="lista-eventi">
+
+</div>
 
 
 </div>
@@ -139,69 +122,17 @@ Calendario
 
 
 
+
+
 <footer>
 
 
 <div class="container">
 
 
-<div class="footer-top">
-
-
-<p data-config="site_name">
-
-Centro Sociale di Dogana
-
+<p>
+Centro Sociale di Dogana — Istituti Culturali della Repubblica di San Marino
 </p>
-
-
-<p data-config="organization">
-
-Istituti Culturali della Repubblica di San Marino
-
-</p>
-
-
-</div>
-
-
-
-<div class="divider"></div>
-
-
-
-<nav class="footer-nav">
-
-
-<a href="pagina.html?slug=privacy">
-
-Privacy
-
-</a>
-
-
-<a href="pagina.html?slug=cookie">
-
-Cookie
-
-</a>
-
-
-<a href="pagina.html?slug=accessibilita">
-
-Accessibilità
-
-</a>
-
-
-<a href="pagina.html?slug=note-legali">
-
-Note legali
-
-</a>
-
-
-</nav>
 
 
 </div>
@@ -212,9 +143,8 @@ Note legali
 
 
 
-<script src="js/data.js"></script>
 
-<script src="js/render.js"></script>
+<script src="js/data.js"></script>
 
 <script src="js/eventi.js"></script>
 

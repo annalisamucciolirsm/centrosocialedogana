@@ -1,7 +1,7 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Data Layer v5
-   Static JSON
+   Data Layer v6
+   Static JSON + Date Fix
    ========================================================== */
 
 "use strict";
@@ -15,7 +15,7 @@ let DATABASE = null;
 
 
 /* ==========================================================
-   Carica database
+   CARICAMENTO DATABASE
    ========================================================== */
 
 
@@ -57,6 +57,7 @@ async function loadDatabase(){
 
     return DATABASE;
 
+
 }
 
 
@@ -65,16 +66,55 @@ async function loadDatabase(){
 
 
 /* ==========================================================
-   Config
+   NORMALIZZAZIONE DATE
+   ========================================================== */
+
+
+function normalizzaData(data){
+
+
+    if(!data){
+
+        return null;
+
+    }
+
+
+
+    const d =
+        new Date(data);
+
+
+
+    return new Date(
+        d.getTime()
+        +
+        d.getTimezoneOffset()*60000
+    );
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   CONFIG
    ========================================================== */
 
 
 async function getConfig(){
 
+
     const db =
         await loadDatabase();
 
+
     return db.config;
+
 
 }
 
@@ -82,32 +122,53 @@ async function getConfig(){
 
 
 
+
+
 /* ==========================================================
-   Eventi
+   EVENTI
    ========================================================== */
 
 
 async function getEventi(){
 
+
     const db =
         await loadDatabase();
 
 
+
     return db.eventi
 
-        .filter(evento =>
 
-            evento.visibilita === "Pubblico"
+        .filter(evento=>{
 
-        )
 
-        .sort((a,b)=>
+            return evento.visibilita
+            ===
+            "Pubblico";
 
-            new Date(a.dataInizio)
-            -
-            new Date(b.dataInizio)
 
-        );
+        })
+
+
+        .sort((a,b)=>{
+
+
+            return (
+
+                normalizzaData(
+                    a.dataInizio
+                )
+                -
+                normalizzaData(
+                    b.dataInizio
+                )
+
+            );
+
+
+        });
+
 
 }
 
@@ -117,15 +178,23 @@ async function getEventi(){
 
 async function getEvento(slug){
 
+
     const eventi =
         await getEventi();
 
 
-    return eventi.find(evento =>
 
-        evento.slug === slug
+    return eventi.find(evento=>{
 
-    );
+
+        return evento.slug
+        ===
+        slug;
+
+
+    });
+
+
 
 }
 
@@ -133,18 +202,22 @@ async function getEvento(slug){
 
 
 
+
+
 /* ==========================================================
-   Contenuti
+   CONTENUTI
    ========================================================== */
 
 
 async function getContenuti(){
+
 
     const db =
         await loadDatabase();
 
 
     return db.contenuti;
+
 
 }
 
@@ -154,15 +227,22 @@ async function getContenuti(){
 
 async function getContenuto(slug){
 
+
     const contenuti =
         await getContenuti();
 
 
-    return contenuti.find(contenuto =>
 
-        contenuto.slug === slug
+    return contenuti.find(contenuto=>{
 
-    );
+
+        return contenuto.slug
+        ===
+        slug;
+
+
+    });
+
 
 }
 
@@ -172,11 +252,12 @@ async function getContenuto(slug){
 
 
 /* ==========================================================
-   Persone
+   PERSONE
    ========================================================== */
 
 
 async function getPersone(){
+
 
     const db =
         await loadDatabase();
@@ -184,25 +265,33 @@ async function getPersone(){
 
     return db.persone;
 
-}
 
+}
 
 
 
 
 async function getPersona(id){
 
+
     const persone =
         await getPersone();
 
 
-    return persone.find(persona =>
 
-        persona.id === id
+    return persone.find(persona=>{
 
-    );
+
+        return persona.id
+        ===
+        id;
+
+
+    });
+
 
 }
+
 
 
 
@@ -210,17 +299,19 @@ async function getPersona(id){
 
 
 /* ==========================================================
-   Luoghi
+   LUOGHI
    ========================================================== */
 
 
 async function getLuoghi(){
+
 
     const db =
         await loadDatabase();
 
 
     return db.luoghi;
+
 
 }
 
@@ -230,14 +321,153 @@ async function getLuoghi(){
 
 async function getLuogo(id){
 
+
     const luoghi =
         await getLuoghi();
 
 
-    return luoghi.find(luogo =>
 
-        luogo.id === id
+    return luoghi.find(luogo=>{
+
+
+        return luogo.id
+        ===
+        id;
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+/* ==========================================================
+   FORMATTAZIONE DATE PUBBLICHE
+   ========================================================== */
+
+
+function formattaData(inizio,fine){
+
+
+    const mesi=[
+
+        "GEN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAG",
+        "GIU",
+        "LUG",
+        "AGO",
+        "SET",
+        "OTT",
+        "NOV",
+        "DIC"
+
+    ];
+
+
+
+    if(!inizio){
+
+        return "";
+
+    }
+
+
+
+    const d1 =
+        normalizzaData(inizio);
+
+
+
+    if(!d1){
+
+        return "";
+
+    }
+
+
+
+    if(fine){
+
+
+        const d2 =
+            normalizzaData(fine);
+
+
+
+        if(
+
+            d1.getMonth()
+            ===
+            d2.getMonth()
+
+        ){
+
+            return (
+
+                d1.getDate()
+                +
+                "–"
+                +
+                d2.getDate()
+                +
+                " "
+                +
+                mesi[
+                    d1.getMonth()
+                ]
+
+            );
+
+        }
+
+
+
+        return (
+
+            d1.getDate()
+            +
+            " "
+            +
+            mesi[
+                d1.getMonth()
+            ]
+            +
+            " – "
+            +
+            d2.getDate()
+            +
+            " "
+            +
+            mesi[
+                d2.getMonth()
+            ]
+
+        );
+
+
+    }
+
+
+
+    return (
+
+        d1.getDate()
+        +
+        " "
+        +
+        mesi[
+            d1.getMonth()
+        ]
 
     );
+
 
 }

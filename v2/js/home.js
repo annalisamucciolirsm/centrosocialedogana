@@ -1,7 +1,7 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Home v3
-   JSON API
+   Home v4
+   Preload dati
    ========================================================== */
 
 "use strict";
@@ -20,12 +20,21 @@ async function initHome(){
     try{
 
 
+        await preloadDati();
+
+
+
         await caricaEventiHome();
+
+
 
         await caricaConfigurazione();
 
 
+
     }
+
+
     catch(error){
 
 
@@ -37,12 +46,43 @@ async function initHome(){
 
     }
 
+
 }
 
 
 
+
+
 /* ==========================================================
-   Eventi Homepage
+   Precaricamento dati
+   ========================================================== */
+
+
+async function preloadDati(){
+
+
+    await Promise.all([
+
+        getEventi(),
+
+        getLuoghi(),
+
+        getPersone(),
+
+        getContenuti()
+
+    ]);
+
+
+}
+
+
+
+
+
+
+/* ==========================================================
+   Eventi Home
    ========================================================== */
 
 
@@ -66,7 +106,7 @@ async function caricaEventiHome(){
 
 
     eventi =
-        eventi.filter(evento => {
+        eventi.filter(evento=>{
 
 
             return (
@@ -85,7 +125,7 @@ async function caricaEventiHome(){
 
 
     eventi =
-        eventi.filter(evento => {
+        eventi.filter(evento=>{
 
 
             return (
@@ -110,10 +150,13 @@ async function caricaEventiHome(){
 
     if(!eventi.length){
 
+
         contenitore.innerHTML =
             renderNessunEvento();
 
+
         return;
+
 
     }
 
@@ -123,12 +166,17 @@ async function caricaEventiHome(){
         renderListaEventi(eventi);
 
 
+
 }
 
 
 
+
+
+
+
 /* ==========================================================
-   Configurazione sito
+   Config
    ========================================================== */
 
 
@@ -140,30 +188,29 @@ async function caricaConfigurazione(){
 
 
 
-    const elementi =
-        document.querySelectorAll(
+    document
+        .querySelectorAll(
             "[data-config]"
-        );
+        )
+        .forEach(elemento=>{
+
+
+            const chiave =
+                elemento.dataset.config;
 
 
 
-    elementi.forEach(elemento=>{
+            if(config[chiave]){
 
 
-        const chiave =
-            elemento.dataset.config;
+                elemento.textContent =
+                    config[chiave];
 
 
-
-        if(config[chiave]){
-
-            elemento.textContent =
-                config[chiave];
-
-        }
+            }
 
 
-    });
+        });
 
 
 }

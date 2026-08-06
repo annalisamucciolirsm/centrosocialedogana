@@ -1,8 +1,12 @@
 /* ==========================================================
-   HOME
+HOME
 ========================================================== */
 
-header{
+/* ==========================================================
+HERO
+========================================================== */
+
+.hero{
 
     min-height:100vh;
 
@@ -16,23 +20,25 @@ header{
 
 }
 
-.hero-subtitle{
+.eyebrow{
 
     margin:0;
 
+    color:var(--muted);
+
     font-size:.78rem;
+
+    font-weight:600;
 
     letter-spacing:.25em;
 
     text-transform:uppercase;
 
-    color:var(--muted);
-
 }
 
-h1{
+.hero h1{
 
-    margin:22px 0 36px;
+    margin:22px 0 34px;
 
     font-size:5rem;
 
@@ -40,31 +46,17 @@ h1{
 
 }
 
-.hero-text{
+.intro{
 
     max-width:620px;
 
     margin:0 auto;
 
-    color:#555;
-
-    font-size:1.35rem;
-
-    line-height:1.7;
-
-}
-
-.hero-location{
-
-    margin-top:36px;
-
     color:var(--muted);
 
-    letter-spacing:.08em;
+    font-size:1.3rem;
 
-    font-size:.82rem;
-
-    text-transform:uppercase;
+    line-height:1.75;
 
 }
 
@@ -78,21 +70,21 @@ h1{
 
     gap:28px;
 
-    margin-top:90px;
+    margin-top:80px;
 
 }
 
 .hero-nav a{
 
-    color:var(--title);
+    position:relative;
 
-    text-decoration:none;
+    color:var(--title);
 
     font-size:.95rem;
 
-    letter-spacing:.04em;
+    font-weight:500;
 
-    position:relative;
+    letter-spacing:.03em;
 
 }
 
@@ -112,7 +104,7 @@ h1{
 
     background:var(--title);
 
-    transition:.25s;
+    transition:var(--transition);
 
 }
 
@@ -122,272 +114,224 @@ h1{
 
 }
 
-/* ----------------------------- */
-
-section{
-
-    padding:140px 0;
-
-}
-
-section h2{
-
-    margin-bottom:24px;
-
-}
-
-section p{
-
-    max-width:620px;
-
-}
-
-@media(max-width:700px){
-
-header{
-
-min-height:85vh;
-
-}
-
-.hero-nav{
-
-gap:18px;
-
-margin-top:45px;
-
-}
-
-section{
-
-padding:90px 0;
-
-}
-
-}
-/* ==========================================
-PROGRAMMA
-========================================== */
-
-#eventi{
-
-margin-top:40px;
-
-}
-
-.evento{
-
-display:grid;
-
-grid-template-columns:140px 1fr;
-
-gap:30px;
-
-padding:34px 0;
-
-align-items:start;
-
-}
-
-.evento-data{
-
-font-size:.82rem;
-
-letter-spacing:.18em;
-
-text-transform:uppercase;
-
-color:var(--muted);
-
-font-weight:600;
-
-}
-
-.evento-contenuto h2{
-
-margin:0;
-
-font-size:2rem;
-
-}
-
-.evento-contenuto p{
-
-margin-top:10px;
-
-color:var(--muted);
-
-}
-
-hr{
-
-border:none;
-
-height:1px;
-
-background:var(--border);
-
-}
-
-.all-events{
-
-margin-top:45px;
-
-}
-
-.all-events a{
-
-font-weight:600;
-
-color:var(--title);
-
-}
-
-@media(max-width:700px){
-
-.evento{
-
-grid-template-columns:1fr;
-
-gap:12px;
-
-}
-
-.evento-contenuto h2{
-
-font-size:1.55rem;
-
-}
-
-}
-/* =======================================================
-EDITORIAL LIST
-======================================================= */
+/* ==========================================================
+EDITORIAL
+========================================================== */
 
 .editorial{
 
-padding-top:70px;
+    padding-top:80px;
 
 }
 
 .editorial-list{
 
-margin-top:60px;
+    margin-top:50px;
 
 }
 
+/* ==========================================================
+EVENTI
+========================================================== */
+
 .evento{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:120px 1fr;
+    grid-template-columns:130px 1fr;
 
-column-gap:42px;
+    column-gap:40px;
 
-padding:34px 0;
+    padding:34px 0;
 
-border-top:1px solid var(--border);
+    border-top:1px solid var(--border);
 
-transition:.25s;
+    transition:padding .25s ease;
 
 }
 
 .evento:last-child{
 
-border-bottom:1px solid var(--border);
+    border-bottom:1px solid var(--border);
 
 }
 
 .evento:hover{
 
-padding-left:12px;
+    padding-left:12px;
 
 }
 
 .evento-data{
 
-font-size:.75rem;
+    padding-top:6px;
 
-letter-spacing:.22em;
+    color:var(--muted);
 
-text-transform:uppercase;
+    font-size:.74rem;
 
-font-weight:600;
+    font-weight:600;
 
-color:var(--muted);
+    letter-spacing:.22em;
 
-padding-top:8px;
+    text-transform:uppercase;
 
 }
 
 .evento-contenuto h2{
 
-margin:0;
+    margin:0;
 
-font-size:2.15rem;
+    font-size:2.05rem;
 
-font-family:Georgia,serif;
-
-font-weight:400;
-
-line-height:1.1;
+    line-height:1.1;
 
 }
 
 .evento-contenuto h2 a{
 
-text-decoration:none;
-
-color:inherit;
+    color:inherit;
 
 }
 
 .evento-contenuto p{
 
-margin-top:12px;
+    margin-top:14px;
 
-color:var(--muted);
-
-font-size:1rem;
+    color:var(--muted);
 
 }
 
+/* ==========================================================
+LINK
+========================================================== */
+
 .archive-link{
 
-margin-top:42px;
+    margin-top:44px;
 
 }
 
 .archive-link a{
 
-font-weight:600;
+    color:var(--title);
 
-text-decoration:none;
-
-color:var(--title);
+    font-weight:600;
 
 }
 
-.archive-link a:hover{
+/* ==========================================================
+BIBLIOTECA
+========================================================== */
 
-opacity:.6;
+.links{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:26px;
+
+    margin-top:36px;
+
+}
+
+.links a{
+
+    color:var(--title);
+
+    font-weight:500;
 
 }
 
-@media(max-width:760px){
+/* ==========================================================
+CONTATTI
+========================================================== */
 
-.evento{
+.contact-grid{
 
-grid-template-columns:1fr;
+    display:grid;
 
-row-gap:10px;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:40px;
+
+    margin-top:44px;
 
 }
 
-.evento-contenuto h2{
+.contact-grid h3{
 
-font-size:1.6rem;
+    margin-bottom:14px;
+
+    font-size:1.2rem;
 
 }
+
+.contact-grid p{
+
+    margin:0;
+
+}
+
+/* ==========================================================
+RESPONSIVE
+========================================================== */
+
+@media (max-width:760px){
+
+    .hero{
+
+        min-height:85vh;
+
+    }
+
+    .hero h1{
+
+        font-size:3.5rem;
+
+    }
+
+    .intro{
+
+        font-size:1.1rem;
+
+    }
+
+    .hero-nav{
+
+        gap:18px;
+
+        margin-top:48px;
+
+    }
+
+    .editorial{
+
+        padding-top:70px;
+
+    }
+
+    .evento{
+
+        grid-template-columns:1fr;
+
+        row-gap:10px;
+
+    }
+
+    .evento-contenuto h2{
+
+        font-size:1.6rem;
+
+    }
+
+    .contact-grid{
+
+        grid-template-columns:1fr;
+
+        gap:28px;
+
+    }
 
 }

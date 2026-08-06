@@ -1,231 +1,174 @@
-/* ==========================================================
-   CENTRO SOCIALE DI DOGANA
-   Evento
-   ========================================================== */
 
+.evento-page{
 
-/* ---------- Hero evento ---------- */
-
-.hero-evento{
-
-    padding-bottom:70px;
-
-}
-
-
-.hero-evento h1{
-
-    max-width:720px;
+padding:90px 0;
 
 }
 
 
 
-/* ---------- Immagine copertina ---------- */
+.evento-meta{
+
+display:flex;
+
+gap:30px;
+
+font-size:12px;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+color:var(--muted);
+
+}
+
+
+
+.evento-page h1{
+
+font-size:64px;
+
+line-height:1.1;
+
+max-width:900px;
+
+margin:35px 0;
+
+}
+
+
+
+.evento-sottotitolo{
+
+font-size:22px;
+
+max-width:700px;
+
+color:var(--muted);
+
+margin-bottom:50px;
+
+}
+
 
 
 .evento-cover{
 
-    width:100%;
+width:100%;
 
-    max-height:620px;
+max-height:550px;
 
-    object-fit:cover;
+object-fit:cover;
 
-    border-radius:var(--radius);
-
-    margin-bottom:70px;
+margin:40px 0;
 
 }
 
 
 
-/* ---------- Informazioni evento ---------- */
 
 
 .evento-info{
 
-    display:grid;
+display:grid;
 
-    grid-template-columns:
-    repeat(3,1fr);
+grid-template-columns:repeat(3,1fr);
 
-    gap:40px;
+gap:30px;
 
-    padding:40px 0;
+border-top:1px solid var(--border);
 
-    border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
 
-    border-bottom:1px solid var(--border);
+padding:35px 0;
 
-    margin-bottom:70px;
-
-}
-
-
-.evento-info p:not(.section-label){
-
-    margin:0;
-
-    color:var(--text);
+margin:50px 0;
 
 }
 
 
 
-/* ---------- Corpo testo ---------- */
+.evento-info strong{
 
+font-size:12px;
 
-.evento-body{
+text-transform:uppercase;
 
-    font-size:1.12rem;
+letter-spacing:2px;
 
-    line-height:1.8;
-
-}
-
-
-.evento-body p{
-
-    max-width:680px;
-
-}
-
-
-.evento-body h2,
-.evento-body h3{
-
-    margin-top:50px;
-
-    margin-bottom:20px;
+color:var(--muted);
 
 }
 
 
 
-/* ---------- Extra ---------- */
+.evento-testo{
 
+max-width:750px;
 
-.evento-extra{
+font-size:19px;
 
-    margin-top:70px;
-
-    padding-top:40px;
-
-    border-top:1px solid var(--border);
+line-height:1.8;
 
 }
 
 
 
-#relatore{
+.relatore{
 
-    color:var(--title);
+margin-top:60px;
 
-    margin-bottom:30px;
+padding-top:40px;
 
-}
-
-
-
-#prenotazione{
-
-    color:var(--muted);
+border-top:1px solid var(--border);
 
 }
 
 
 
-/* ---------- Badge ---------- */
+.button{
 
+display:inline-block;
 
-.badge{
+margin-top:40px;
 
-    display:inline-flex;
+border-bottom:1px solid var(--accent);
 
-    align-items:center;
-
-    padding:5px 12px;
-
-    margin-right:8px;
-
-    margin-bottom:20px;
-
-    border:1px solid var(--border);
-
-    border-radius:999px;
-
-    font-size:.75rem;
-
-    letter-spacing:.08em;
-
-    text-transform:uppercase;
-
-    color:var(--muted);
-
-}
-
-
-.badge-highlight{
-
-    color:var(--title);
-
-    border-color:var(--title);
-
-}
-
-
-
-/* ---------- Empty state ---------- */
-
-
-.empty-state{
-
-    padding:70px 0;
-
-    text-align:center;
-
-}
-
-
-.empty-state h2{
-
-    margin-bottom:20px;
+padding-bottom:5px;
 
 }
 
 
 
 
-/* ---------- Responsive ---------- */
+
+@media(max-width:700px){
 
 
-@media(max-width:760px){
+.evento-page h1{
 
+font-size:42px;
 
-    .evento-info{
-
-        grid-template-columns:1fr;
-
-        gap:25px;
-
-    }
+}
 
 
 
-    .evento-cover{
+.evento-info{
 
-        margin-bottom:40px;
+grid-template-columns:1fr;
 
-    }
+}
 
 
 
-    .evento-body{
+.evento-meta{
 
-        font-size:1rem;
+flex-direction:column;
 
-    }
+gap:10px;
+
+}
 
 
 }

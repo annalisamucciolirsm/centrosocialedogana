@@ -1,1 +1,79 @@
+/* ==========================================================
+   HOME
+========================================================== */
 
+.hero-logo{
+
+    width:58px;
+
+    height:auto;
+
+    margin:0 auto 28px;
+
+}
+
+header h1{
+
+    margin:0;
+
+}
+
+.hero-subtitle{
+
+    margin-bottom:16px;
+
+}
+
+.hero-text{
+
+    max-width:520px;
+
+}
+
+main{
+
+    padding-bottom:80px;
+
+}
+
+section:first-of-type{
+
+    padding-top:30px;
+
+}
+
+section h2{
+
+    margin-bottom:18px;
+
+}
+
+section p{
+
+    max-width:620px;
+
+}
+
+section p:last-child{
+
+    margin-bottom:0;
+
+}
+
+section a{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    color:var(--title);
+
+    font-weight:500;
+
+}
+
+section a:hover{
+
+    transform:translateX(4px);
+
+}

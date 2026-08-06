@@ -1,141 +1,87 @@
-/* ==========================================================
-   CENTRO SOCIALE DI DOGANA
-   Eventi v3
-   JSON API
-   ========================================================== */
-
 "use strict";
 
 
 document.addEventListener(
-    "DOMContentLoaded",
-    initEventi
+"DOMContentLoaded",
+caricaEventi
 );
 
 
 
-/* ==========================================================
-   Avvio
-   ========================================================== */
+async function caricaEventi(){
 
 
-async function initEventi(){
-
-    const contenitore =
-        document.getElementById("eventi");
-
-
-    if(!contenitore)
-        return;
-
-
-    try{
-
-
-        let eventi =
-            await getEventi();
+const contenitore =
+document.getElementById(
+"lista-eventi"
+);
 
 
 
-        /*
-        Eventi futuri e programmati
-        */
-
-        eventi =
-            eventi.filter(evento => {
-
-                return evento.stato !== "Annullato"
-                &&
-                evento.stato !== "Concluso";
-
-            });
+const eventi =
+await getEventi();
 
 
 
-        /*
-        Se siamo nella homepage
-        mostra solo quelli destinati alla Home
-        */
-
-        if(
-            document.body.classList.contains("home")
-        ){
-
-            eventi =
-                eventi.filter(evento => {
-
-                    return (
-                        evento.posizione || ""
-                    )
-                    .includes("Home");
-
-                });
-
-        }
+contenitore.innerHTML =
 
 
-
-        /*
-        Limite homepage
-        */
-
-        if(
-            document.body.classList.contains("home")
-        ){
-
-            eventi =
-                eventi.slice(0,5);
-
-        }
+eventi.map(evento=>`
 
 
-
-        if(!eventi.length){
-
-            contenitore.innerHTML =
-                renderNessunEvento();
-
-            return;
-
-        }
+<article class="card-evento">
 
 
+<div class="card-data">
 
-        contenitore.innerHTML =
-            renderListaEventi(eventi);
-
-
-
-    }
-    catch(error){
-
-
-        console.error(
-            "Errore caricamento eventi:",
-            error
-        );
-
-
-        contenitore.innerHTML = `
-
-<div class="empty-state">
-
-<h2>
-
-Impossibile caricare gli eventi
-
-</h2>
-
-<p>
-
-Riprova più tardi.
-
-</p>
+${formattaData(
+evento.dataInizio,
+evento.dataFine
+)}
 
 </div>
 
-`;
 
-    }
+
+<div>
+
+
+<h2>
+
+<a href="evento.html?slug=${evento.slug}">
+
+${evento.titolo}
+
+</a>
+
+</h2>
+
+
+
+<p>
+
+${evento.categoria}
+
+</p>
+
+
+
+<p>
+
+${evento.descrizioneBreve || ""}
+
+</p>
+
+
+</div>
+
+
+</article>
+
+
+
+`).join("");
+
+
 
 }

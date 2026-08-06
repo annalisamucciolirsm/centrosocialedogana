@@ -1,101 +1,339 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Evento v2
+   Evento v3
+   JSON API
    ========================================================== */
 
-google.charts.load("current");
+"use strict";
 
-google.charts.setOnLoadCallback(caricaEvento);
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initEvento
+);
+
+
 
 /* ==========================================================
-   Configurazione
+   Avvio
    ========================================================== */
 
-const SHEET_URL =
-    "https://docs.google.com/spreadsheets/d/15oL19MUdtAUfe9TupmaeG_aYKLcdo8n6u2QVy5k3WR8/gviz/tq?sheet=Eventi";
 
-/* ==========================================================
-   Helpers
-   ========================================================== */
+async function initEvento(){
 
-function parametro(nome) {
+    const slug =
+        new URLSearchParams(
+            window.location.search
+        )
+        .get("slug");
 
-    return new URLSearchParams(window.location.search).get(nome);
+
+    if(!slug)
+        return;
+
+
+
+    try{
+
+
+        const evento =
+            await getEvento(slug);
+
+
+
+        if(!evento){
+
+            mostraErroreEvento();
+
+            return;
+
+        }
+
+
+
+        const luogo =
+            await getLuogo(
+                evento.luogoId
+            );
+
+
+
+        let persone = [];
+
+
+
+        if(evento.persone){
+
+            const ids =
+                evento.persone.split(";");
+
+
+            for(
+                const id of ids
+            ){
+
+                const persona =
+                    await getPersona(
+                        id.trim()
+                    );
+
+
+                if(persona)
+                    persone.push(persona);
+
+            }
+
+        }
+
+
+
+        renderPaginaEvento(
+            evento,
+            luogo,
+            persone
+        );
+
+
+
+    }
+    catch(error){
+
+
+        console.error(
+            "Errore caricamento evento:",
+            error
+        );
+
+
+        mostraErroreEvento();
+
+    }
 
 }
 
-/* ==========================================================
-   Caricamento
-   ========================================================== */
 
-function caricaEvento() {
-
-    const query = new google.visualization.Query(SHEET_URL);
-
-    query.send(mostraEvento);
-
-}
 
 /* ==========================================================
    Rendering
    ========================================================== */
 
-function mostraEvento(response) {
 
-    if (response.isError()) {
+function renderPaginaEvento(
+    evento,
+    luogo,
+    persone
+){
 
-        console.error(response.getMessage());
 
-        return;
+    document.title =
+        evento.seoTitle
+        ||
+        evento.titolo;
+
+
+
+    const titolo =
+        document.getElementById("titolo");
+
+
+    if(titolo)
+        titolo.textContent =
+            evento.titolo;
+
+
+
+    const categoria =
+        document.getElementById("categoria");
+
+
+    if(categoria)
+        categoria.textContent =
+            evento.categoria;
+
+
+
+    const meta =
+        document.getElementById("meta");
+
+
+    if(meta)
+        meta.textContent =
+            evento.sottotitolo;
+
+
+
+    const descrizione =
+        document.getElementById("descrizione");
+
+
+    if(descrizione)
+        descrizione.innerHTML =
+            evento.testoCompleto;
+
+
+
+    const quando =
+        document.getElementById("quando");
+
+
+    if(quando)
+        quando.textContent =
+            formattaData(
+                evento.dataInizio,
+                evento.dataFine
+            );
+
+
+
+    const orario =
+        document.getElementById("orario");
+
+
+    if(orario)
+        orario.textContent =
+            evento.orario
+            ||
+            "—";
+
+
+
+    const luogoBox =
+        document.getElementById("luogo");
+
+
+    if(luogoBox)
+        luogoBox.textContent =
+            luogo
+            ?
+            luogo.nome
+            :
+            "";
+
+
+
+    const prenotazione =
+        document.getElementById("prenotazione");
+
+
+    if(prenotazione)
+        prenotazione.textContent =
+            evento.prenotazione
+            ||
+            "";
+
+
+
+    const relatore =
+        document.getElementById("relatore");
+
+
+    if(
+        relatore
+        &&
+        persone.length
+    ){
+
+        relatore.innerHTML =
+            persone
+            .map(persona => `
+
+<strong>
+${persona.nomeCompleto}
+</strong>
+
+<br>
+
+${persona.biografiaBreve || ""}
+
+            `)
+            .join("<br><br>");
 
     }
 
-    const table = response.getDataTable();
 
-    const slugRichiesto = parametro("slug");
 
-    if (!slugRichiesto) return;
+    if(evento.copertina){
 
-    for (let i = 0; i < table.getNumberOfRows(); i++) {
+        const img =
+            document.getElementById("copertina");
 
-        const slug = table.getValue(i, 4);
 
-        if (slug !== slugRichiesto) continue;
+        if(img){
 
-        document.dispatchEvent(new CustomEvent("eventoCaricato", {
+            img.hidden = false;
 
-            detail: {
+            img.src =
+                evento.copertina;
 
-                dataInizio: table.getValue(i, 0),
-                dataFine: table.getValue(i, 1),
+            img.alt =
+                evento.imageAlt
+                ||
+                evento.titolo;
 
-                titolo: table.getValue(i, 2),
-                categoria: table.getValue(i, 3),
-
-                slug: table.getValue(i, 4),
-
-                descrizione: table.getValue(i, 5),
-                immagine: table.getValue(i, 6),
-
-                luogo: table.getValue(i, 7),
-                orario: table.getValue(i, 8),
-
-                relatore: table.getValue(i, 9),
-
-                prenotazione: table.getValue(i, 10),
-
-                allegato: table.getValue(i, 11),
-
-                attivo: table.getValue(i, 12)
-
-            }
-
-        }));
-
-        return;
+        }
 
     }
 
-    document.body.classList.add("evento-non-trovato");
+
+
+    const allegato =
+        document.getElementById("allegato");
+
+
+    if(
+        allegato
+        &&
+        evento.allegato
+    ){
+
+        allegato.hidden = false;
+
+        allegato.href =
+            evento.allegato;
+
+    }
+
+
+
+}
+
+
+
+/* ==========================================================
+   Errore
+   ========================================================== */
+
+
+function mostraErroreEvento(){
+
+    const titolo =
+        document.getElementById("titolo");
+
+
+    if(titolo){
+
+        titolo.textContent =
+            "Evento non trovato";
+
+    }
+
+
+    const descrizione =
+        document.getElementById("descrizione");
+
+
+    if(descrizione){
+
+        descrizione.innerHTML = `
+
+<p>
+
+L'evento richiesto non è disponibile.
+
+</p>
+
+`;
+
+    }
 
 }

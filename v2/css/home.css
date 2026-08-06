@@ -165,3 +165,98 @@ padding:90px 0;
 }
 
 }
+/* ==========================================
+PROGRAMMA
+========================================== */
+
+#eventi{
+
+margin-top:40px;
+
+}
+
+.evento{
+
+display:grid;
+
+grid-template-columns:140px 1fr;
+
+gap:30px;
+
+padding:34px 0;
+
+align-items:start;
+
+}
+
+.evento-data{
+
+font-size:.82rem;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
+color:var(--muted);
+
+font-weight:600;
+
+}
+
+.evento-contenuto h2{
+
+margin:0;
+
+font-size:2rem;
+
+}
+
+.evento-contenuto p{
+
+margin-top:10px;
+
+color:var(--muted);
+
+}
+
+hr{
+
+border:none;
+
+height:1px;
+
+background:var(--border);
+
+}
+
+.all-events{
+
+margin-top:45px;
+
+}
+
+.all-events a{
+
+font-weight:600;
+
+color:var(--title);
+
+}
+
+@media(max-width:700px){
+
+.evento{
+
+grid-template-columns:1fr;
+
+gap:12px;
+
+}
+
+.evento-contenuto h2{
+
+font-size:1.55rem;
+
+}
+
+}

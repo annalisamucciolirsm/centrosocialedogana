@@ -1,55 +1,120 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Eventi
+   Eventi v3
+   JSON API
    ========================================================== */
 
 "use strict";
 
-document.addEventListener("DOMContentLoaded", initEventi);
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initEventi
+);
+
+
 
 /* ==========================================================
-   Init
+   Avvio
    ========================================================== */
 
-async function initEventi() {
 
-    const contenitore = document.getElementById("eventi");
+async function initEventi(){
 
-    if (!contenitore) return;
+    const contenitore =
+        document.getElementById("eventi");
 
-    try {
 
-        let eventi = await getEventi();
+    if(!contenitore)
+        return;
 
-        // Solo eventi pubblici e non conclusi
-        eventi = eventi.filter(evento =>
-            evento.Stato !== "Concluso" &&
-            evento.Stato !== "Annullato"
-        );
 
-        // Home → mostra solo gli eventi destinati alla Home
-        if (document.body.classList.contains("home")) {
+    try{
 
-            eventi = eventi.filter(evento =>
-                (evento.Posizione || "").includes("Home")
-            );
+
+        let eventi =
+            await getEventi();
+
+
+
+        /*
+        Eventi futuri e programmati
+        */
+
+        eventi =
+            eventi.filter(evento => {
+
+                return evento.stato !== "Annullato"
+                &&
+                evento.stato !== "Concluso";
+
+            });
+
+
+
+        /*
+        Se siamo nella homepage
+        mostra solo quelli destinati alla Home
+        */
+
+        if(
+            document.body.classList.contains("home")
+        ){
+
+            eventi =
+                eventi.filter(evento => {
+
+                    return (
+                        evento.posizione || ""
+                    )
+                    .includes("Home");
+
+                });
 
         }
 
-        if (!eventi.length) {
 
-            contenitore.innerHTML = renderNessunEvento();
+
+        /*
+        Limite homepage
+        */
+
+        if(
+            document.body.classList.contains("home")
+        ){
+
+            eventi =
+                eventi.slice(0,5);
+
+        }
+
+
+
+        if(!eventi.length){
+
+            contenitore.innerHTML =
+                renderNessunEvento();
+
             return;
 
         }
 
-        contenitore.innerHTML = renderListaEventi(eventi);
+
+
+        contenitore.innerHTML =
+            renderListaEventi(eventi);
+
+
 
     }
+    catch(error){
 
-    catch (errore) {
 
-        console.error(errore);
+        console.error(
+            "Errore caricamento eventi:",
+            error
+        );
+
 
         contenitore.innerHTML = `
 
@@ -57,13 +122,13 @@ async function initEventi() {
 
 <h2>
 
-Errore di caricamento
+Impossibile caricare gli eventi
 
 </h2>
 
 <p>
 
-Non è stato possibile recuperare gli eventi.
+Riprova più tardi.
 
 </p>
 

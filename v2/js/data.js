@@ -1,75 +1,38 @@
 /* ==========================================================
    CENTRO SOCIALE DI DOGANA
-   Data Layer v4
-   JSON API + Session Cache
+   Data Layer v5
+   Static JSON
    ========================================================== */
 
 "use strict";
 
 
-const API_URL =
-"https://script.google.com/macros/s/AKfycbzDklNlH4AGyuMfjUg7CfrwsfS7qMNj19S7MWaYcdPmSye4BOjmWdRf0BT9eUt6VflU-A/exec";
+const DATA_URL = "data/data.json";
 
 
-const CACHE = {};
+let DATABASE = null;
 
 
 
 /* ==========================================================
-   Caricamento dati
+   Carica database
    ========================================================== */
 
 
-async function getSheet(sheet){
+async function loadDatabase(){
 
 
-    const memoryCache =
-        CACHE[sheet];
+    if(DATABASE){
 
-
-    if(memoryCache){
-
-        return memoryCache;
+        return DATABASE;
 
     }
-
-
-
-    const storageKey =
-        "csd_" + sheet;
-
-
-
-    const saved =
-        sessionStorage.getItem(
-            storageKey
-        );
-
-
-
-    if(saved){
-
-        const data =
-            JSON.parse(saved);
-
-
-        CACHE[sheet] = data;
-
-
-        return data;
-
-    }
-
-
-
-    const url =
-        `${API_URL}?sheet=${encodeURIComponent(sheet)}`;
 
 
 
     const response =
         await fetch(
-            url,
+            DATA_URL,
             {
                 cache:"no-store"
             }
@@ -80,33 +43,22 @@ async function getSheet(sheet){
     if(!response.ok){
 
         throw new Error(
-            "Errore caricamento dati: " + sheet
+            "Impossibile caricare data.json"
         );
 
     }
 
 
 
-    const data =
+    DATABASE =
         await response.json();
 
 
 
-    CACHE[sheet] = data;
-
-
-
-    sessionStorage.setItem(
-        storageKey,
-        JSON.stringify(data)
-    );
-
-
-
-    return data;
-
+    return DATABASE;
 
 }
+
 
 
 
@@ -119,28 +71,10 @@ async function getSheet(sheet){
 
 async function getConfig(){
 
+    const db =
+        await loadDatabase();
 
-    const rows =
-        await getSheet("Config");
-
-
-
-    const config = {};
-
-
-
-    rows.forEach(item=>{
-
-
-        config[item.chiave] =
-            item.valore;
-
-
-    });
-
-
-
-    return config;
+    return db.config;
 
 }
 
@@ -155,59 +89,45 @@ async function getConfig(){
 
 async function getEventi(){
 
-
-    const eventi =
-        await getSheet("Eventi");
-
+    const db =
+        await loadDatabase();
 
 
-    return eventi
+    return db.eventi
 
-        .filter(evento=>{
+        .filter(evento =>
 
+            evento.visibilita === "Pubblico"
 
-            return evento.visibilita === "Pubblico";
+        )
 
+        .sort((a,b)=>
 
-        })
-
-
-        .sort((a,b)=>{
-
-
-            return new Date(a.dataInizio)
+            new Date(a.dataInizio)
             -
-            new Date(b.dataInizio);
+            new Date(b.dataInizio)
 
-
-        });
-
+        );
 
 }
+
 
 
 
 
 async function getEvento(slug){
 
-
     const eventi =
         await getEventi();
 
 
+    return eventi.find(evento =>
 
-    return eventi.find(evento=>{
+        evento.slug === slug
 
-
-        return evento.slug === slug;
-
-
-    });
-
+    );
 
 }
-
-
 
 
 
@@ -220,30 +140,29 @@ async function getEvento(slug){
 
 async function getContenuti(){
 
+    const db =
+        await loadDatabase();
 
-    return await getSheet("Contenuti");
 
+    return db.contenuti;
 
 }
 
 
 
-async function getContenuto(slug){
 
+
+async function getContenuto(slug){
 
     const contenuti =
         await getContenuti();
 
 
+    return contenuti.find(contenuto =>
 
-    return contenuti.find(contenuto=>{
+        contenuto.slug === slug
 
-
-        return contenuto.slug === slug;
-
-
-    });
-
+    );
 
 }
 
@@ -259,31 +178,29 @@ async function getContenuto(slug){
 
 async function getPersone(){
 
+    const db =
+        await loadDatabase();
 
-    return await getSheet("Persone");
 
+    return db.persone;
 
 }
 
 
 
 
-async function getPersona(id){
 
+async function getPersona(id){
 
     const persone =
         await getPersone();
 
 
+    return persone.find(persona =>
 
-    return persone.find(persona=>{
+        persona.id === id
 
-
-        return persona.id === id;
-
-
-    });
-
+    );
 
 }
 
@@ -299,30 +216,28 @@ async function getPersona(id){
 
 async function getLuoghi(){
 
+    const db =
+        await loadDatabase();
 
-    return await getSheet("Luoghi");
 
+    return db.luoghi;
 
 }
 
 
 
 
-async function getLuogo(id){
 
+async function getLuogo(id){
 
     const luoghi =
         await getLuoghi();
 
 
+    return luoghi.find(luogo =>
 
-    return luoghi.find(luogo=>{
+        luogo.id === id
 
-
-        return luogo.id === id;
-
-
-    });
-
+    );
 
 }

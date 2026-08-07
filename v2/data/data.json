@@ -164,8 +164,8 @@
       "sottotitolo": "Un incontro per conoscere il metodo attraverso il movimento.",
       "descrizioneBreve": "Serata introduttiva aperta a tutti dedicata al Metodo Feldenkrais?.",
       "testoCompleto": "<p>Un incontro esperienziale per avvicinarsi al Metodo Feldenkrais?, un approccio che utilizza il movimento per migliorare consapevolezza, postura e benessere. L'incontro alterner? una breve introduzione teorica a esperienze pratiche guidate.</p>",
-      "copertina": "https://example.com/images/feldenkrais-cover.jpg",
-      "card": "https://example.com/images/feldenkrais-card.jpg",
+      "copertina": "",
+      "card": "",
       "galleria": "",
       "orario": "20:45",
       "durata": "90 min",
@@ -180,10 +180,12 @@
       "tag": "salute,movimento,benessere",
       "seoTitle": "Il Metodo Feldenkrais? | Centro Sociale di Dogana",
       "seoDescription": "Serata esperienziale dedicata al Metodo Feldenkrais?.",
-      "openGraph": "https://example.com/images/feldenkrais-og.jpg",
+      "openGraph": "",
       "imageAlt": "Lezione del Metodo Feldenkrais",
       "stato": "Programmato",
-      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z",
+      "inaugurazione": "",
+      "ricorrenza": ""
     },
     {
       "id": 2,
@@ -197,8 +199,8 @@
       "sottotitolo": "Cinquant'anni di arte e storia del Laboratorio di Pittura di Domagnano.",
       "descrizioneBreve": "Mostra celebrativa del cinquantesimo anniversario.",
       "testoCompleto": "<p>Una mostra che ripercorre mezzo secolo di attivit? del Laboratorio di Pittura di Domagnano attraverso opere, documenti e fotografie.</p>",
-      "copertina": "https://example.com/images/solo50-cover.jpg",
-      "card": "https://example.com/images/solo50-card.jpg",
+      "copertina": "",
+      "card": "",
       "galleria": "",
       "orario": "17:00",
       "durata": "Mostra",
@@ -213,10 +215,12 @@
       "tag": "arte,mostra,pittura",
       "seoTitle": "Sono \"Solo\" 50 Anni | Mostra",
       "seoDescription": "Mostra celebrativa del Laboratorio di Pittura di Domagnano.",
-      "openGraph": "https://example.com/images/solo50-og.jpg",
+      "openGraph": "",
       "imageAlt": "Manifesto della mostra",
       "stato": "Programmato",
-      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z",
+      "inaugurazione": "sabato 10 ottobre, ore 17",
+      "ricorrenza": ""
     },
     {
       "id": 3,
@@ -230,8 +234,8 @@
       "sottotitolo": "Un percorso dedicato all'ascolto e alla relazione.",
       "descrizioneBreve": "Corso introduttivo alla Comunicazione Nonviolenta.",
       "testoCompleto": "<p>Laboratorio dedicato ai principi della Comunicazione Nonviolenta elaborata da Marshall Rosenberg.</p>",
-      "copertina": "https://example.com/images/cnv-cover.jpg",
-      "card": "https://example.com/images/cnv-card.jpg",
+      "copertina": "",
+      "card": "",
       "galleria": "",
       "orario": "20:30",
       "durata": "2 ore",
@@ -246,10 +250,12 @@
       "tag": "comunicazione,corso",
       "seoTitle": "Corso di Comunicazione Nonviolenta",
       "seoDescription": "Scopri i principi della Comunicazione Nonviolenta.",
-      "openGraph": "https://example.com/images/cnv-og.jpg",
+      "openGraph": "",
       "imageAlt": "Partecipanti al corso",
       "stato": "Programmato",
-      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z",
+      "inaugurazione": "",
+      "ricorrenza": ""
     },
     {
       "id": 4,
@@ -263,8 +269,8 @@
       "sottotitolo": "Una riflessione tra psicologia, filosofia e letteratura.",
       "descrizioneBreve": "Conferenza aperta al pubblico.",
       "testoCompleto": "<p>Una serata dedicata al rapporto tra identit?, ruoli sociali e crescita personale.</p>",
-      "copertina": "https://example.com/images/maschere-cover.jpg",
-      "card": "https://example.com/images/maschere-card.jpg",
+      "copertina": "",
+      "card": "",
       "galleria": "",
       "orario": "21:00",
       "durata": "90 min",
@@ -279,10 +285,12 @@
       "tag": "psicologia,filosofia,conferenza",
       "seoTitle": "L'Io e le sue Maschere",
       "seoDescription": "Conferenza dedicata al tema dell'identit? personale.",
-      "openGraph": "https://example.com/images/maschere-og.jpg",
+      "openGraph": "",
       "imageAlt": "Relatore durante la conferenza",
       "stato": "Programmato",
-      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z",
+      "inaugurazione": "",
+      "ricorrenza": ""
     },
     {
       "id": 5,
@@ -296,8 +304,8 @@
       "sottotitolo": "Un laboratorio creativo dedicato ai bambini.",
       "descrizioneBreve": "Esperienze artistiche con luce, carta e colori.",
       "testoCompleto": "<p>Attraverso giochi, sagome, luci e colori i bambini sperimenteranno il rapporto tra ombra, immaginazione e creativit?.</p>",
-      "copertina": "https://example.com/images/luciombre-cover.jpg",
-      "card": "https://example.com/images/luciombre-card.jpg",
+      "copertina": "",
+      "card": "",
       "galleria": "",
       "orario": "16:30",
       "durata": "75 min",
@@ -312,10 +320,12 @@
       "tag": "bambini,laboratorio,creativit?",
       "seoTitle": "Luci e Ombre Colorate",
       "seoDescription": "Laboratorio creativo per bambini.",
-      "openGraph": "https://example.com/images/luciombre-og.jpg",
+      "openGraph": "",
       "imageAlt": "Bambini durante il laboratorio",
       "stato": "Programmato",
-      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z"
+      "ultimoAggiornamento": "2026-08-05T22:00:00.000Z",
+      "inaugurazione": "",
+      "ricorrenza": ""
     }
   ],
   "contenuti": [
